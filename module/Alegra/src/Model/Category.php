@@ -2,12 +2,12 @@
 
 namespace Alegra\Model;
 
-use Alegra\Utility\Translatable;
+//use Alegra\Utility\Translatable;
 
 /**
 * 
 */
-class Category extends Translatable
+class Category //extends Translatable
 {
 	
 	private $id;

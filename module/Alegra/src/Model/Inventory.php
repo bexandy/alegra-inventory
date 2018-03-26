@@ -2,11 +2,11 @@
 
 namespace Alegra\Model;
 
-use Alegra\Utility\Translatable;
+//use Alegra\Utility\Translatable;
 /**
 * 
 */
-class Inventory extends Translatable
+class Inventory //extends Translatable
 {
 	/**
      * @var string|''
