@@ -85,8 +85,8 @@ Ext.define('MyApp.view.main.Main', {
     },
 
     items: [{
-        title: 'Products Inventory',
-        iconCls: 'fa-barcode',
+        title: ' Products Inventory',
+        iconCls: 'fa-cubes',
         items: [{
             xtype: 'form-grid',
             reference: 'formGrid'
@@ -94,7 +94,7 @@ Ext.define('MyApp.view.main.Main', {
     },  
     {
         title: 'New Product',
-        iconCls: 'fa-home',
+        iconCls: 'fa-plus',
         items: [{
             xtype: 'productform',
         }]
@@ -108,7 +108,7 @@ Ext.define('MyApp.view.main.Main', {
     },
     {
         title: 'Taxes List',
-        iconCls: 'fas fa-cog',
+        iconCls: 'fa-calculator',
         items: [{
             xtype: 'taxesgrid'
         }]
@@ -126,16 +126,10 @@ Ext.define('MyApp.view.main.Main', {
             xtype: 'warehousesgrid'
         }]
     },  {
-        title: 'Product Grid - Paging',
-        iconCls: 'fa-home',
+        title: 'Company',
+        iconCls: 'fa-industry',
         items: [{
             xtype: 'productListPaging'
         }]
-    },  {
-        title: 'Users',
-        iconCls: 'fa-user',
-        bind: {
-            html: '{loremIpsum}'
-        }
     }]
 });

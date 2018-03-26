@@ -8,7 +8,7 @@ namespace Alegra\Model;
 class Warehouses
 {
     /**
-     * @return null|string
+     * @return ''|string
      */
     public function getStatus()
     {
@@ -16,65 +16,65 @@ class Warehouses
     }
 
     /**
-     * @param null|string $status
+     * @param ''|string $status
      */
     public function setStatus($status)
     {
         $this->status = $status;
     }
 	/**
-     * @var string|null
+     * @var string|''
      */
     private $id;
 
 
     /**
-     * @var string|null
+     * @var string|''
      */
     private $name;
 
     /**
-     * @var string|null
+     * @var string|''
      */
     private $observations;
 
     /**
-     * @var boolean|null
+     * @var boolean|''
      */
     private $isDefault;
 
     /**
-     * @var string|null
+     * @var string|''
      */
     private $address;
 
     /**
-     * @var string|null
+     * @var string|''
      */
     private $initialQuantity;
 
     /**
-     * @var string|null
+     * @var string|''
      */
     private $availableQuantity;
 
     /**
-     * @var string|null
+     * @var string|''
      */
     private $status;
 
 
 	/**
 	 * Class Constructor
-	 * @param string   $id   |null
-	 * @param string   $name   |null
-	 * @param string   $observations   |null
-	 * @param boolean   $isDefault   |null
-	 * @param string   $address   |null
-	 * @param string   $initialQuantity   |null
-	 * @param string   $availableQuantity   |null
+	 * @param string   $id   |''
+	 * @param string   $name   |''
+	 * @param string   $observations   |''
+	 * @param boolean   $isDefault   |''
+	 * @param string   $address   |''
+	 * @param string   $initialQuantity   |''
+	 * @param string   $availableQuantity   |''
 	 */
-	public function __construct($id = null, $name = null, $observations = null, $isDefault = false, $address = null, $initialQuantity = null, $availableQuantity = null, $status = null)
+	public function __construct($id = '', $name = '', $observations = '', $isDefault = false, $address = '', $initialQuantity = '', $availableQuantity = '', $status = '')
 	{
 		$this->id = $id;
 		$this->name = $name;
@@ -89,7 +89,7 @@ class Warehouses
 
 
     /**
-     * @return string|null
+     * @return string|''
      */
     public function getId()
     {
@@ -97,7 +97,7 @@ class Warehouses
     }
 
     /**
-     * @param string|null $id
+     * @param string|'' $id
      *
      * @return self
      */
@@ -109,7 +109,7 @@ class Warehouses
     }
 
     /**
-     * @return string|null
+     * @return string|''
      */
     public function getName()
     {
@@ -117,7 +117,7 @@ class Warehouses
     }
 
     /**
-     * @param string|null $name
+     * @param string|'' $name
      *
      * @return self
      */
@@ -129,7 +129,7 @@ class Warehouses
     }
 
     /**
-     * @return string|null
+     * @return string|''
      */
     public function getObservations()
     {
@@ -137,7 +137,7 @@ class Warehouses
     }
 
     /**
-     * @param string|null $observations
+     * @param string|'' $observations
      *
      * @return self
      */
@@ -149,7 +149,7 @@ class Warehouses
     }
 
     /**
-     * @return boolean|null
+     * @return boolean|''
      */
     public function isIsDefault()
     {
@@ -157,7 +157,7 @@ class Warehouses
     }
 
     /**
-     * @param boolean|null $isDefault
+     * @param boolean|'' $isDefault
      *
      * @return self
      */
@@ -169,7 +169,7 @@ class Warehouses
     }
 
     /**
-     * @return string|null
+     * @return string|''
      */
     public function getAddress()
     {
@@ -177,7 +177,7 @@ class Warehouses
     }
 
     /**
-     * @param string|null $address
+     * @param string|'' $address
      *
      * @return self
      */
@@ -189,7 +189,7 @@ class Warehouses
     }
 
     /**
-     * @return string|null
+     * @return string|''
      */
     public function getInitialQuantity()
     {
@@ -197,7 +197,7 @@ class Warehouses
     }
 
     /**
-     * @param string|null $initialQuantity
+     * @param string|'' $initialQuantity
      *
      * @return self
      */
@@ -209,7 +209,7 @@ class Warehouses
     }
 
     /**
-     * @return string|null
+     * @return string|''
      */
     public function getAvailableQuantity()
     {
@@ -217,7 +217,7 @@ class Warehouses
     }
 
     /**
-     * @param string|null $availableQuantity
+     * @param string|'' $availableQuantity
      *
      * @return self
      */

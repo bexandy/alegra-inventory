@@ -24,7 +24,7 @@ class Category
      * @param $type
      * @param $readOnly
      */
-    public function __construct($id = null, $idParent = null, $name = null, $description = null, $type = null, $readOnly = null)
+    public function __construct($id = '', $idParent = '', $name = '', $description = '', $type = '', $readOnly = '')
     {
         $this->id = $id;
         $this->idParent = $idParent;

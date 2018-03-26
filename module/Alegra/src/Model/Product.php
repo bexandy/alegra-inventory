@@ -53,7 +53,7 @@ class Product
     private $status;
 
     /**
-     * @var null|string
+     * @var ''|string
      */
     private $productKey;
 
@@ -69,9 +69,9 @@ class Product
 	 * @param Category $category   
 	 * @param Inventory $inventory   
 	 * @param string   $status   
-	 * @param null   $productKey   |string
+	 * @param ''   $productKey   |string
 	 */
-	public function __construct($id = null, $name = null, $description = null, $reference = null, array $priceLists = null, array $taxArray = null, Category $category = null, Inventory $inventory = null, $status = null, $productKey = null)
+	public function __construct($id = '', $name = '', $description = '', $reference = '', array $priceLists = array(), array $taxArray = array(), Category $category = null, Inventory $inventory = null, $status = '', $productKey = '')
 	{
 		$this->id = $id;
 		$this->name = $name;
@@ -268,7 +268,7 @@ class Product
     }
 
     /**
-     * @return null|string
+     * @return ''|string
      */
     public function getProductKey()
     {
@@ -276,7 +276,7 @@ class Product
     }
 
     /**
-     * @param null|string $productKey
+     * @param ''|string $productKey
      *
      * @return self
      */

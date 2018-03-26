@@ -8,40 +8,40 @@ namespace Alegra\Model;
 class Inventory
 {
 	/**
-     * @var string|null
+     * @var string|''
      */
     private $unit;
 
     /**
-     * @var string|null
+     * @var string|''
      */
     private $availableQuantity;
 
     /**
-     * @var string|null
+     * @var string|''
      */
     private $unitCost;
 
     /**
-     * @var string|null
+     * @var string|''
      */
     private $initialQuantity;
 
     /**
-     * @var array |null
+     * @var array |''
      */
     private $warehouses;
 
 
 	/**
 	 * Class Constructor
-	 * @param string   $unit   |null
-	 * @param string   $availableQuantity   |null
-	 * @param string   $unitCost   |null
-	 * @param string   $initialQuantity   |null
-	 * @param Warehouses   $warehouses    |null
+	 * @param string   $unit   |''
+	 * @param string   $availableQuantity   |''
+	 * @param string   $unitCost   |''
+	 * @param string   $initialQuantity   |''
+	 * @param Warehouses   $warehouses    |''
 	 */
-	public function __construct($unit = null, $availableQuantity = null, $unitCost = null, $initialQuantity = null, array $warehouses = null)
+	public function __construct($unit = '', $availableQuantity = '', $unitCost = '', $initialQuantity = '', array $warehouses = array())
 	{
 		$this->unit = $unit;
 		$this->availableQuantity = $availableQuantity;
@@ -54,7 +54,7 @@ class Inventory
 
 
     /**
-     * @return string|null
+     * @return string|''
      */
     public function getUnit()
     {
@@ -62,7 +62,7 @@ class Inventory
     }
 
     /**
-     * @param string|null $unit
+     * @param string|'' $unit
      *
      * @return self
      */
@@ -74,7 +74,7 @@ class Inventory
     }
 
     /**
-     * @return string|null
+     * @return string|''
      */
     public function getAvailableQuantity()
     {
@@ -82,7 +82,7 @@ class Inventory
     }
 
     /**
-     * @param string|null $availableQuantity
+     * @param string|'' $availableQuantity
      *
      * @return self
      */
@@ -94,7 +94,7 @@ class Inventory
     }
 
     /**
-     * @return string|null
+     * @return string|''
      */
     public function getUnitCost()
     {
@@ -102,7 +102,7 @@ class Inventory
     }
 
     /**
-     * @param string|null $unitCost
+     * @param string|'' $unitCost
      *
      * @return self
      */
@@ -114,7 +114,7 @@ class Inventory
     }
 
     /**
-     * @return string|null
+     * @return string|''
      */
     public function getInitialQuantity()
     {
@@ -122,7 +122,7 @@ class Inventory
     }
 
     /**
-     * @param string|null $initialQuantity
+     * @param string|'' $initialQuantity
      *
      * @return self
      */
@@ -134,7 +134,7 @@ class Inventory
     }
 
     /**
-     * @return Warehouses |null
+     * @return Warehouses |''
      */
     public function getWarehouses()
     {
@@ -142,7 +142,7 @@ class Inventory
     }
 
     /**
-     * @param Warehouses |null $warehouses
+     * @param Warehouses |'' $warehouses
      *
      * @return self
      */

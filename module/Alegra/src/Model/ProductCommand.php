@@ -38,7 +38,7 @@ class ProductCommand implements ProductCommandInterface
      * @param Product $product The product to insert; may or may not have an identifier.
      * @return Product The inserted product, with identifier.
      */
-    public function insertPost(Product $product)
+    public function insertProduct(Product $product)
     {
 
     	$hydrator = new ProductHydrator();
@@ -100,9 +100,54 @@ class ProductCommand implements ProductCommandInterface
      * @param Product $product The product to update; must have an identifier.
      * @return Product The updated product.
      */
-    public function updatePost(Product $product)
+    public function updateProduct(Product $product)
     {
+        $hydrator = new ProductHydrator();
+        $data = $hydrator->extract($product);
+        unset($data['id']);
 
+        $data['tax'] = $this->array_filter_recursive($data['tax']);
+        $data['inventory'] = $this->array_filter_recursive($data['inventory']);
+        $data['price'] = $this->array_filter_recursive($data['price']);
+        $data['category'] = $this->array_filter_recursive($data['category']);
+        $data = $this->array_filter_recursive($data);
+        $json = new JsonModel($data);
+
+        $id = $product->getId();
+
+        $apiUrl = $this->config['api-url']['items'].$id;
+
+        $request = new Request();
+        $request->setUri($apiUrl);
+        $request->setMethod(Request::METHOD_PUT);
+        $request->setContent($json->serialize());
+
+
+        $client = new Client();
+        $user = $this->config['user'];
+        $token = $this->config['token'];
+        $client->setAuth($user, $token, Client::AUTH_BASIC);
+
+        try {
+            $response = $client->dispatch($request);
+        } catch (\RuntimeException $e) {
+            $message = $e->getMessage();
+            $error = array('message' => $message);
+            return $error;
+        }
+
+        if (! $response->isSuccess()) {
+            $message = $response->getStatusCode() . ': ' . $response->getReasonPhrase();
+            $error = array('message' => $message);
+            return $error;
+        }
+
+        $data = json_decode($response->getBody(), true);
+
+        $hydrator = new  ProductHydrator();
+        $product = $hydrator->hydrate( $data,new Product());
+
+        return $product;
     }
 
     /**
@@ -111,9 +156,39 @@ class ProductCommand implements ProductCommandInterface
      * @param Product $product The product to delete.
      * @return bool
      */
-    public function deletePost(Product $product)
+    public function deleteProduct(Product $product)
     {
+        $id = $product->getId();
 
+        $apiUrl = $this->config['api-url']['items'].$id;
+
+        $request = new Request();
+        $request->setUri($apiUrl);
+        $request->setMethod(Request::METHOD_DELETE);
+
+
+        $client = new Client();
+        $user = $this->config['user'];
+        $token = $this->config['token'];
+        $client->setAuth($user, $token, Client::AUTH_BASIC);
+
+        try {
+            $response = $client->dispatch($request);
+        } catch (\RuntimeException $e) {
+            $message = $e->getMessage();
+            $error = array('message' => $message);
+            return $error;
+        }
+
+        if (! $response->isSuccess()) {
+            $message = $response->getStatusCode() . ': ' . $response->getReasonPhrase();
+            $error = array('message' => $message);
+            return $error;
+        }
+
+        $message = json_decode($response->getBody(), true);
+
+        return $message;
     }
 
     function array_filter_recursive($input)
@@ -126,6 +201,8 @@ class ProductCommand implements ProductCommandInterface
             }
         }
 
-        return array_filter($input);
+        $filter = array_filter($input, function($v){ return is_null($v) || $v != '' ;});
+        return $filter;
     }
+
 }

@@ -16,7 +16,7 @@ Ext.define('MyApp.view.alegra.FormGridController', {
           this.getView().getForm().loadRecord(rec);
           
           Ext.getCmp('formgrid-fieldset').setDisabled(false);
-
+/*
           var items = this.getView().getForm().getFields().items,
               i = 0,
               len = items.length;
@@ -27,10 +27,12 @@ Ext.define('MyApp.view.alegra.FormGridController', {
               c.wasDirty = false;
             }
           }
+          */
         }
     },
 
     onUpdateClick: function (sender, record) {
+
         var productForm = this.getView().getForm();
 
         if (!productForm.isDirty()) {
@@ -43,9 +45,8 @@ Ext.define('MyApp.view.alegra.FormGridController', {
         }
 
         var record = productForm.getRecord();
-        /*
-        record.save();
-
+        
+       
         var values = productForm.getValues();
 
         var objCategory = { id: values.categoryId };
@@ -60,21 +61,24 @@ Ext.define('MyApp.view.alegra.FormGridController', {
 
         var objInventory = { unit: values.inventoryUnit, unitCost: values.inventoryUnitCost, warehouses: arrWarehouses };
         console.log(values);
-        
-        var product = Ext.create('MyApp.model.Product',{
-                            id: values.id,
-                            name: values.name,
-                            description: values.description,
-                            reference: values.reference,
-                            tax: values.tax,
-                            price: arrPrice,
-                            category: objCategory,
-                            inventory: objInventory,
-                        });
-        */
-        //Ext.Msg.alert('Data Values', values);
-        
-        
+
+
+        var product = {
+            id: values.id,
+            name: values.name,
+            description: values.description,
+            reference: values.reference,
+            tax: values.tax,
+            price: arrPrice,
+            category: objCategory,
+            inventory: objInventory,
+        };
+      
+        record.set(product);
+
+        var mask = new Ext.LoadMask({ msg: "Updating...", target: Ext.getCmp('formgrid-fieldset') });
+        mask.show();
+
          record.save({
             waitMsg: 'Saving..',
             scope: this,
@@ -100,10 +104,13 @@ Ext.define('MyApp.view.alegra.FormGridController', {
                 //store.load();
                 Ext.getCmp('gridpanel').getStore().load();
                 Ext.Msg.alert('Status', 'Saved successfully.');
+                mask.hide();
             },
             failure: function(record, operation) {
+                Ext.getCmp('gridpanel').getStore().load();
                 console.log(operation.response); // undefined
                 Ext.Msg.alert('Status', 'Operation Failure.');
+                mask.hide();
             }
         });  
         
@@ -138,6 +145,99 @@ Ext.define('MyApp.view.alegra.FormGridController', {
             }
         });
         */
+        if (mask != undefined) mask.hide();
     },
+
+    onDeleteClick: function (sender, record) {
+
+        var productForm = this.getView().getForm();
+/*
+        if (!productForm.isValid()) {
+            Ext.Msg.alert('Status', 'Invalid data.');
+            return;
+        }
+
+        if (!productForm.getValues(false, false, false, true).id) {
+            Ext.Msg.alert('Status', 'Invalid or no data.');
+            return;
+        }
+*/
+        var record = productForm.getRecord();
+        
+       
+             
+        //record.set(product);
+
+        var mask = new Ext.LoadMask({ msg: "Updating...", target: Ext.getCmp('formgrid-fieldset') });
+        mask.show();
+
+         record.erase({
+            waitMsg: 'Saving..',
+            scope: this,
+            success: function(record, operation) {
+                console.log(operation.response); // I can get server response in success      
+
+                //var product = Ext.create('MyApp.model.Student');
+                //var resp = Ext.decode(action.response.responseText);
+
+                //if (resp.data[0]) {
+                    // addstudent returns product model with Id so we can re-load model into form so form will have isDirty false
+                //    product.set(resp.data[0]);
+                //    productForm.loadRecord(product);
+                //}
+                
+                productForm.getFields().each(function (field) {
+                    field.validateOnChange = false;
+                    field.setValue('');
+                    field.resetOriginalValue();
+                });
+
+                //var store = Ext.create('MyApp.store.ProductsMapping');
+                //store.load();
+                Ext.getCmp('gridpanel').getStore().load();
+                Ext.Msg.alert('Status', 'Delete successfully.');
+                mask.hide();
+            },
+            failure: function(record, operation) {
+                Ext.getCmp('gridpanel').getStore().load();
+                console.log(operation.response); // undefined
+                Ext.Msg.alert('Status', 'Operation Failure.');
+                mask.hide();
+            }
+        });  
+        
+
+        //result should contain success=true and data property otherwise it will go to failure even if there is no failure
+        /*
+        productForm.load({
+            waitMsg: 'Loading...',
+            method: 'GET',
+            params:
+            {
+                id: 1
+            },
+            success: function (form, action) {
+                try {
+                    var resp = Ext.decode(action.response.responseText);
+
+                    if (resp.data.length > 0) {
+                        // addstudent returns student model with Id so we can re-load model into form so form will have isDirty false
+                        var student = Ext.create('MyApp.model.Student');
+                        student.set(resp.data[0]);
+                        productForm.loadRecord(student);
+                    }
+                }
+                catch (ex) {
+                    Ext.Msg.alert('Status', 'Exception: ' + ex.Message);
+
+                }
+            },
+            failure: function (form, action) {
+                Ext.Msg.alert("Load failed", action.result.errorMessage);
+            }
+        });
+        */
+        if (mask != undefined) mask.hide();
+    }
 
 });

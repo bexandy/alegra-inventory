@@ -255,12 +255,12 @@ Ext.define('MyApp.view.alegra.FormGrid', {
                                 queryMode: 'local',
                                 typeAhead: true,
                                 id: 'formgrid-unit',
-                                vtype: 'inventoryGridMatch'
+                                //vtype: 'inventoryGridMatch'
                             },{
                                 fieldLabel: 'Unit Cost ($)',
                                 name: 'inventoryUnitCost',
                                 id: 'formgrid-unitCost',
-                                vtype: 'inventoryGridMatch'
+                                //vtype: 'inventoryGridMatch'
                                 
                             }],
                         },
@@ -288,13 +288,13 @@ Ext.define('MyApp.view.alegra.FormGrid', {
                                 queryMode: 'local',
                                 typeAhead: true,
                                 id: 'formgrid-warehouse',
-                                vtype: 'inventoryGridMatch'
+                                //vtype: 'inventoryGridMatch'
                                 //forceSelection: true   
                             }, {
                                 fieldLabel: 'Initial Quantity',
                                 name: 'warehousesInitialQuantity',
                                 id: 'formgrid-initialQuantity',
-                                vtype: 'inventoryGridMatch'
+                                //vtype: 'inventoryGridMatch'
                                 //margin: '0 0 5 5',
                             }],
                         }],

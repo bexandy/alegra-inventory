@@ -8,37 +8,37 @@ namespace Alegra\Model;
 class PriceList 
 {
 	/**
-     * @var string|null
+     * @var string|''
      */
     private $idPriceList;
 
     /**
-     * @var string|null
+     * @var string|''
      */
     private $name;
 
     /**
-     * @var string|null
+     * @var string|''
      */
     private $status;
 
     /**
-     * @var string|null
+     * @var string|''
      */
     private $type;
 
     /**
-     * @var string|null
+     * @var string|''
      */
     private $price;
 
     /**
      * PriceList constructor.
-     * @param null|string $idPriceList
-     * @param null|string $name
-     * @param null|string $price
+     * @param ''|string $idPriceList
+     * @param ''|string $name
+     * @param ''|string $price
      */
-    public function __construct($idPriceList = null, $name = null, $status = null, $type = null, $price = null)
+    public function __construct($idPriceList = '', $name = '', $status = '', $type = '', $price = '')
     {
         $this->idPriceList = $idPriceList;
         $this->name = $name;
@@ -97,7 +97,7 @@ class PriceList
     }
 
     /**
-     * @return null|string
+     * @return ''|string
      */
     public function getStatus()
     {
@@ -105,7 +105,7 @@ class PriceList
     }
 
     /**
-     * @param null|string $status
+     * @param ''|string $status
      */
     public function setStatus($status)
     {
@@ -113,7 +113,7 @@ class PriceList
     }
 
     /**
-     * @return null|string
+     * @return ''|string
      */
     public function getType()
     {
@@ -121,7 +121,7 @@ class PriceList
     }
 
     /**
-     * @param null|string $type
+     * @param ''|string $type
      */
     public function setType($type)
     {

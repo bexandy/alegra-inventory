@@ -47,7 +47,7 @@ class Tax
 	 * @param string   $description   
 	 * @param string   $status   
 	 */
-	public function __construct($id = null, $name = null, $percentage = null, $description = null, $type = null, $status = null)
+	public function __construct($id = '', $name = '', $percentage = '', $description = '', $type = '', $status = '')
 	{
 		$this->id = $id;
 		$this->name = $name;
