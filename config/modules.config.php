@@ -17,7 +17,7 @@ return [
     'Zend\Validator',
     'AssetManager',
     'Application',
-    'Album', 
-    'Blog',
+    //'Album', 
+    //'Blog',
     'Alegra',
 ];
