@@ -197,7 +197,10 @@ class ProductCommand implements ProductCommandInterface
         {
             if (is_array($value))
             {
-                $value = $this->array_filter_recursive($value);
+                if (empty($value))
+                    $value = null;
+                else
+                    $value = $this->array_filter_recursive($value);
             }
         }
 

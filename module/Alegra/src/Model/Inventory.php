@@ -161,7 +161,9 @@ class Inventory //extends Translatable
 
             switch(true) {  
                 case $value instanceof Warehouses:
-                    $return[$row] = $value->toArray();
+                    $warehouse = $value->toArray();
+                    $warehouse = empty($warehouse) ? null : $warehouse;
+                    $return[$row] = $warehouse;
                     break;
                 case is_array($value):
                     $count = 0;
@@ -169,7 +171,11 @@ class Inventory //extends Translatable
                     {
                         if ($item instanceof Warehouses)
                         {
-                            $return[$row][$count] = $item->toArray();
+                            $warehouse = array_filter($item->toArray());
+                            $warehouse = empty($warehouse) ? null : $warehouse;
+                            if (is_null($warehouse))
+                                continue;
+                            $return[$row][$count] = $warehouse;
                             $count++;
                         }
                     }
