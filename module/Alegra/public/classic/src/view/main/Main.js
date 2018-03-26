@@ -24,7 +24,6 @@ Ext.define('MyApp.view.main.Main', {
         'MyApp.view.alegra.CategoriesGrid',
         'MyApp.view.alegra.WarehousesGrid',
 
-        'MyApp.view.alegra.ProductListPaging'
     ],
 
     controller: 'main',
@@ -124,12 +123,6 @@ Ext.define('MyApp.view.main.Main', {
         iconCls: 'fa-home',
         items: [{
             xtype: 'warehousesgrid'
-        }]
-    },  {
-        title: 'Company',
-        iconCls: 'fa-industry',
-        items: [{
-            xtype: 'productListPaging'
         }]
     }]
 });

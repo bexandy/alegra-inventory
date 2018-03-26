@@ -56,7 +56,7 @@ return [
                 // The type of the route is "Segment" because we are
                 // using segments that will be mapped to function parameters.
                 // E.g. the id
-                'type'    => Literal::class,
+                'type'    => Segment::class,
                 'options' => [
                     // Requests to this URL will map to our RESTful controller.
                     // Requests to /api/company/id and /api/company will match.
@@ -69,7 +69,6 @@ return [
                         // the router that we want this controller to handle
                         // requests to this route.
                         'controller' => Controller\CompanyController::class,
-                        'action'     => 'index',
                     ],
                 ],
             ],

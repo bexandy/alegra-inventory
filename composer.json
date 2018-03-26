@@ -20,7 +20,8 @@
         "zendframework/zend-mvc-form": "^1.0",
         "rwoverdijk/assetmanager": "^1.7",
         "zendframework/zend-json-server": "^3.0",
-        "zendframework/zend-eventmanager": "^3.2"
+        "zendframework/zend-eventmanager": "^3.2",
+        "yandex/translate-api": "1.5.x"
     },
     "autoload": {
         "psr-4": {

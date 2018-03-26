@@ -2,10 +2,11 @@
 
 namespace Alegra\Model;
 
+use Alegra\Utility\Translatable;
 /**
 * 
 */
-class PriceList 
+class PriceList extends Translatable
 {
 	/**
      * @var string|''
@@ -147,5 +148,27 @@ class PriceList
             $return[$row] = $value;
         }
         return $return;
+    }
+
+    public function toEnglish()
+    {
+        foreach ($this as $row => &$value) {
+
+            switch(true) {
+                case is_null($value):
+                    break;
+                case $value == '':
+                    break;
+                case $value == 'name':
+                    $this->setName($this->TranslateEspToEng($value));
+                    break;
+                case $value == 'type':
+                    $this->setType($this->TranslateEspToEng($value));
+                    break;
+                default:
+                    return;
+            }
+        }
+        return;
     }
 }
