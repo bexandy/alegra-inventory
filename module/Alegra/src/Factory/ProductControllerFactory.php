@@ -7,7 +7,7 @@ use Alegra\Model\ProductRepositoryInterface;
 use Alegra\Model\ProductCommandInterface;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
-use Alegra\Utility\Translatable;
+//use Alegra\Utility\Translatable;
 
 class ProductControllerFactory implements FactoryInterface
 {
@@ -21,8 +21,8 @@ class ProductControllerFactory implements FactoryInterface
     {
         return new ProductController(
             $container->get(ProductRepositoryInterface::class),
-            $container->get(ProductCommandInterface::class),
-            $container->get(Translatable::class)
+            $container->get(ProductCommandInterface::class)
+          //  $container->get(Translatable::class)
         );
     }
 }

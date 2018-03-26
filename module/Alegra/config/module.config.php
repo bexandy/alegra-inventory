@@ -34,7 +34,7 @@ return [
             Model\WarehousesRepository::class => Factory\WarehousesRepositoryFactory::class,
             Model\ProductRepository::class => Factory\ProductRepositoryFactory::class,
             Model\ProductCommand::class => Factory\ProductCommandFactory::class,
-            Utility\Translatable::class => InvokableFactory::class,
+            //Utility\Translatable::class => InvokableFactory::class,
         ],
     ],
     'controllers' => [

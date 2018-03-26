@@ -6,7 +6,7 @@ use Alegra\Hydrator\ProductHydrator;
 use Alegra\Model\Product;
 use Alegra\Model\ProductCommandInterface;
 use Alegra\Model\ProductRepositoryInterface;
-use Alegra\Utility\Translatable;
+//use Alegra\Utility\Translatable;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\View\Model\JsonModel;
@@ -18,17 +18,17 @@ class ProductController extends AbstractRestfulController
      */
     private $productRepository;
     private $productCommand;
-    private $traductor;
+  //  private $traductor;
 
     public function __construct(
             ProductRepositoryInterface $productRepository, 
-            ProductCommandInterface $productCommand,
-            Translatable $traductor
+            ProductCommandInterface $productCommand
+           // Translatable $traductor
         )
     {
         $this->productRepository = $productRepository;
         $this->productCommand = $productCommand;
-        $this->traductor = $traductor;
+    //    $this->traductor = $traductor;
     }
 
     private function notFound()
