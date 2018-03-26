@@ -32,7 +32,7 @@ class Translatable
             } elseif (in_array($row,$this->price_fields)){
                 $data[$row] = $value * $this->rate_convertion;
             } else {
-                $data[$row] = in_array($row,$this->translatable_fields) && !is_array($value) ? $this->TranslateEngToEsp($value)->getResult()[0] : $value;
+                $data[$row] = in_array($row,$this->translatable_fields) && !is_array($value) ? $this->TranslateEngToEsp($value) : $value;
             }
 
         }
@@ -50,7 +50,7 @@ class Translatable
             } elseif (in_array($row,$this->price_fields)) {
                 $data[$row] = $value / $this->rate_convertion;
             } else {
-                $data[$row] = in_array($row,$this->translatable_fields) && !is_array($value) ? $this->TranslateEspToEng($value)->getResult()[0] : $value;
+                $data[$row] = in_array($row,$this->translatable_fields) && !is_array($value) ? $this->TranslateEspToEng($value) : $value;
             }
 
         }
@@ -65,7 +65,7 @@ class Translatable
 		  $translator = new Translator($key);
 		  $translation = $translator->translate($value, 'en-es');
 
-		  return $translation; // Привет мир
+		  return $translation->getResult()[0]; // Привет мир
 
 		  //echo $translation->getSource(); // Hello world;
 
@@ -83,7 +83,7 @@ class Translatable
 		  $translator = new Translator($key);
 		  $translation = $translator->translate($value, 'es-en');
 
-		  return $translation; // Привет мир
+		  return $translation->getResult()[0]; // Привет мир
 
 		  //echo $translation->getSource(); // Hello world;
 
