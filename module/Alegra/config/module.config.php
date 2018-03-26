@@ -24,6 +24,7 @@ return [
             Model\WarehousesRepositoryInterface::class => Model\WarehousesRepository::class,
             Model\ProductRepositoryInterface::class => Model\ProductRepository::class,
             Model\ProductCommandInterface::class => Model\ProductCommand::class,
+            //Utility\Translatable::class => Utility\Translatable::class,
         ],
         'factories' => [
             Model\CategoryRepository::class => Factory\CategoryRepositoryFactory::class,
@@ -33,6 +34,7 @@ return [
             Model\WarehousesRepository::class => Factory\WarehousesRepositoryFactory::class,
             Model\ProductRepository::class => Factory\ProductRepositoryFactory::class,
             Model\ProductCommand::class => Factory\ProductCommandFactory::class,
+            Utility\Translatable::class => InvokableFactory::class,
         ],
     ],
     'controllers' => [

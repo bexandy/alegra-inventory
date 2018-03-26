@@ -42,8 +42,9 @@ class PriceListController extends AbstractRestfulController
 
             $test = $priceLists->toArray();
 
-            $traductor = new Translatable();
-            $data = $traductor->toEnglish($test);
+            $data = $test;
+            //$traductor = new Translatable();
+            //$data = $traductor->toEnglish($test);
 
             $this->getResponse()->setStatusCode(200);
             $json = new JsonModel([

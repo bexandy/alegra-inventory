@@ -18,14 +18,17 @@ class ProductController extends AbstractRestfulController
      */
     private $productRepository;
     private $productCommand;
+    private $traductor;
 
     public function __construct(
             ProductRepositoryInterface $productRepository, 
-            ProductCommandInterface $productCommand
+            ProductCommandInterface $productCommand,
+            Translatable $traductor
         )
     {
         $this->productRepository = $productRepository;
         $this->productCommand = $productCommand;
+        $this->traductor = $traductor;
     }
 
     private function notFound()
@@ -47,8 +50,9 @@ class ProductController extends AbstractRestfulController
         $test = $products->toArray();
         $decode = $this->array_filter_recursive_from_alegra($test);
 
-        $traductor = new Translatable();
-        $data = $traductor->toEnglish($decode);
+        $data = $decode;
+        //$traductor = $this->traductor;
+        //$data = $traductor->toEnglish($decode);
 
         $this->getResponse()->setStatusCode(200);
         $json = new JsonModel([
