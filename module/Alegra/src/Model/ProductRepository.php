@@ -62,19 +62,18 @@ class ProductRepository implements ProductRepositoryInterface
             $response = $client->dispatch($request);
         } catch (RuntimeException $e) {
             $message = $e->getMessage();
-            $error = array('message' => $message);
+            $error = $message;
             return $error;
         }
 
         if (! $response->isSuccess()) {
-            $message = $response->getStatusCode() . ': ' . $response->getReasonPhrase();
-            $error = array('message' => $message);
+            $message = json_decode(explode("\r\n", $response->getContent())[1]);
+            $error = 'code '.$message->code.' : '.$message->message;
             return $error;
         }
 
 		$data = json_decode($response->getBody(), true);
-        //var_dump($data);
-        //$resulset = new HydratingResultSet(new Reflection(), new Product());
+
 		$resulset = new HydratingResultSet(new ProductHydrator(), new Product());
 		$resulset->initialize($data);
 
@@ -97,19 +96,19 @@ class ProductRepository implements ProductRepositoryInterface
         $user = $this->config['user'];
         $token = $this->config['token'];
         $client->setAuth($user, $token, Client::AUTH_BASIC);
-        //$client->setParameterGet(array('id' ->));
+
 
         try {
             $response = $client->dispatch($request);
          } catch (RuntimeException $e) {
             $message = $e->getMessage();
-            $error = array('message' => $message);
+            $error = $message;
             return $error;
         }
 
         if (! $response->isSuccess()) {
-            $message = $response->getStatusCode() . ': ' . $response->getReasonPhrase();
-            $error = array('message' => $message);
+            $message = json_decode(explode("\r\n", $response->getContent())[1]);
+            $error = 'code '.$message->code.' : '.$message->message;
             return $error;
         }
 

@@ -9,3 +9,6 @@ module/Blog/
 error.log
 requests.log
 .idea/
+module/Alegra/public/
+module/Alegra/public/*
+

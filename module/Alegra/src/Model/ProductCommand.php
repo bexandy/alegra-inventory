@@ -59,30 +59,18 @@ class ProductCommand implements ProductCommandInterface
         $token = $this->config['token'];
         $client->setAuth($user, $token, Client::AUTH_BASIC);
 
-        //$client->setRawBody($json->serialize());
-
-        //var_dump($client);
 
         try {
             $response = $client->dispatch($request);
-            //var_dump($response);
-            //echo '$response->getBody()<br>';
-            //var_dump($response->getBody());
         } catch (\RuntimeException $e) {
             $message = $e->getMessage();
-            //echo '! Exception<br>';
-            $error = array('message' => $message);
-            //var_dump($error);
-            //die();
+            $error = $message;
             return $error;
         }
 
         if (! $response->isSuccess()) {
-            $message = $response->getStatusCode() . ': ' . $response->getReasonPhrase();
-            //echo '! $response->isSuccess()<br>';
-            $error = array('message' => $message);
-            //var_dump($error);
-            //die();
+            $message = json_decode(explode("\r\n", $response->getContent())[1]);
+            $error = 'code '.$message->code.' : '.$message->message;
             return $error;
         }
 
@@ -132,13 +120,13 @@ class ProductCommand implements ProductCommandInterface
             $response = $client->dispatch($request);
         } catch (\RuntimeException $e) {
             $message = $e->getMessage();
-            $error = array('message' => $message);
+            $error = $message;
             return $error;
         }
 
         if (! $response->isSuccess()) {
-            $message = $response->getStatusCode() . ': ' . $response->getReasonPhrase();
-            $error = array('message' => $message);
+            $message = json_decode(explode("\r\n", $response->getContent())[1]);
+            $error = 'code '.$message->code.' : '.$message->message;
             return $error;
         }
 
@@ -176,13 +164,13 @@ class ProductCommand implements ProductCommandInterface
             $response = $client->dispatch($request);
         } catch (\RuntimeException $e) {
             $message = $e->getMessage();
-            $error = array('message' => $message);
+            $error = $message;
             return $error;
         }
 
         if (! $response->isSuccess()) {
-            $message = $response->getStatusCode() . ': ' . $response->getReasonPhrase();
-            $error = array('message' => $message);
+            $message = json_decode(explode("\r\n", $response->getContent())[1]);
+            $error = 'code '.$message->code.' : '.$message->message;
             return $error;
         }
 
