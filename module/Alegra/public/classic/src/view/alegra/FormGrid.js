@@ -185,7 +185,7 @@ Ext.define('MyApp.view.alegra.FormGrid', {
                             valueField: 'id',
                             label: 'Tax Name',
                             labelWrap: true,
-                            name: 'tax',
+                            name: 'taxId',
                             fieldLabel: 'Tax',
                             queryMode: 'local',
                             typeAhead: true,

@@ -2,7 +2,7 @@
 
 namespace Alegra;
 
-use Zend\Router\Http\Literal;
+use Alegra\Factory\TranslatorPluginFactory;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
@@ -14,7 +14,6 @@ return [
             ),
         ),
     ),
-    // Add this section:
     'service_manager' => [
         'aliases' => [
             Model\CategoryRepositoryInterface::class => Model\CategoryRepository::class,
@@ -48,7 +47,6 @@ return [
             Controller\ProductController::class => Factory\ProductControllerFactory::class,
         ],
     ],
-    // This lines opens the configuration for the RouteManager
     'router' => [
         'routes' => [
             // This is the name of the route. For this example it's irrelevant
@@ -127,6 +125,21 @@ return [
         ],
         'strategies' => [
             'ViewJsonStrategy',
+        ],
+    ],
+    'translator' => [
+        'locale' => 'en_US',
+        'translation_file_patterns' => [
+            [
+                'type'     => 'phpArray',
+                'base_dir' => __DIR__ . '/../language',
+                'pattern'  => '%s.lang.php',
+            ],
+        ],
+    ],
+    'controller_plugins' => [
+        'factories' => [
+            'translator' => TranslatorPluginFactory::class,
         ],
     ],
 ];

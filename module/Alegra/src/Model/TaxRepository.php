@@ -53,13 +53,13 @@ class TaxRepository implements TaxRepositoryInterface
             $response = $client->dispatch($request);
         } catch (RuntimeException $e) {
             $message = $e->getMessage();
-            $error = array('message' => $message);
+            $error = $message;
             return $error;
         }
 
         if (! $response->isSuccess()) {
-            $message = $response->getStatusCode() . ': ' . $response->getReasonPhrase();
-            $error = array('message' => $message);
+            $message = json_decode(explode("\r\n", $response->getContent())[1]);
+            $error = 'code '.$message->code.' : '.$message->message;
             return $error;
         }
 
@@ -95,13 +95,13 @@ class TaxRepository implements TaxRepositoryInterface
             $response = $client->dispatch($request);
         } catch (RuntimeException $e) {
             $message = $e->getMessage();
-            $error = array('message' => $message);
+            $error = $message;
             return $error;
         }
 
         if (! $response->isSuccess()) {
-            $message = $response->getStatusCode() . ': ' . $response->getReasonPhrase();
-            $error = array('message' => $message);
+            $message = json_decode(explode("\r\n", $response->getContent())[1]);
+            $error = 'code '.$message->code.' : '.$message->message;
             return $error;
         }
 

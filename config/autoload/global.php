@@ -29,5 +29,28 @@ return [
             'taxes' =>  'https://app.alegra.com/api/v1/taxes/',
             'atachment' => '/attachment'
     	]
+    ],
+    'translatable' => [
+        'strings' => [
+            'name',
+            'description',
+            'observation',
+            'regime',
+            'type'
+        ],
+        'prices' => [
+            'price',
+            'unitCost'
+        ],
+        'convert_currency' => [
+            'rate' => 2450,
+            'api_url' => 'http://apilayer.net/api/',
+            'endpoint' => 'live',
+            'access_key' => '697bee86c1bd1128bf49fe7270dfbb97',
+            'currencies' => 'COP'
+        ],
+        'yandex_translator' => [
+            'key' => 'trnsl.1.1.20180326T025546Z.8759566ac41c77b4.3c47c8593776b4cfd74613030dd1bac355e6715f'
+        ]
     ]
 ];

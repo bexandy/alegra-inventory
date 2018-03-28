@@ -4,9 +4,9 @@ namespace Alegra\Controller;
 
 use Alegra\Model\Tax;
 use Alegra\Model\TaxRepositoryInterface;
+use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\View\Model\JsonModel;
-use Zend\Json\Json as Json;
 
 class TaxController extends AbstractRestfulController
 {
@@ -33,13 +33,23 @@ class TaxController extends AbstractRestfulController
     public function getList()
     {
         $taxes = $this->taxRepository->findAllTaxes();
-        $array = $taxes->toArray();
-        $json = new JsonModel([
-            'success' => true,
-            'data' => $array
-        ]);
-
-        return $json;
+        if ($taxes instanceof HydratingResultSet) {
+            $array = $taxes->toArray();
+            $data = $this->translator()->toEnglish($array);
+            $json = new JsonModel([
+                'success' => true,
+                'data' => $data
+            ]);
+            $this->getResponse()->setStatusCode(200);
+            return $json;
+        } else {
+            $message = $this->translator()->translate($taxes);
+            $this->getResponse()->setStatusCode(404);
+            return new JsonModel([
+                'success' => false,
+                'message' => $message
+            ]);
+        }
     }
 
 
@@ -48,15 +58,22 @@ class TaxController extends AbstractRestfulController
 
         $tax = $this->taxRepository->findTax($id);
 
-        if ($tax instanceof Warehouses) {
+        if ($tax instanceof Tax) {
             $array = $tax->toArray();
-            return new JsonModel([
+            $data = $this->translator()->toEnglish($array);
+            $json = new JsonModel([
                 'success' => true,
-                'data' => $array
+                'data' => $data
             ]);
-        }
-        else {
-            return $this->notFound(); // Return a 404 if the tax is not found
+            $this->getResponse()->setStatusCode(200);
+            return $json;
+        } else {
+            $message = $this->translator()->translate($tax);
+            $this->getResponse()->setStatusCode(404);
+            return new JsonModel([
+                'success' => false,
+                'message' => $message
+            ]);
         }
     }
 

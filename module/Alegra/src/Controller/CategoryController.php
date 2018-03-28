@@ -4,6 +4,7 @@ namespace Alegra\Controller;
 
 use Alegra\Model\Category;
 use Alegra\Model\CategoryRepositoryInterface;
+use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\View\Model\JsonModel;
 use Zend\Json\Json as Json;
@@ -33,14 +34,24 @@ class CategoryController extends AbstractRestfulController
     public function getList()
     {
         $categories = $this->categoryRepository->findAllCategories();
-        //var_dump($categories);
-        $array = $categories->toArray();
-        $json = new JsonModel([
-            'success' => true,
-            'data' => $array
-        ]);
-        //var_dump($json);
-        return $json;
+        if ($categories instanceof HydratingResultSet)
+        {
+            $array = $categories->toArray();
+            $data = $this->translator()->toEnglish($array);
+            $json = new JsonModel([
+                'success' => true,
+                'data' => $data
+            ]);
+            $this->getResponse()->setStatusCode(200);
+            return $json;
+        } else {
+            $message = $this->translator()->translate($categories);
+            $this->getResponse()->setStatusCode(404);
+            return new JsonModel([
+                'success' => false,
+                'message' => $message
+            ]);
+        }
     }
 
 
@@ -51,13 +62,20 @@ class CategoryController extends AbstractRestfulController
 
         if ($category instanceof Category) {
             $array = $category->toArray();
-            return new JsonModel([
+            $data = $this->translator()->toEnglish($array);
+            $json = new JsonModel([
                 'success' => true,
-                'data' => $array
+                'data' => $data
             ]);
-        }
-        else {
-            return $this->notFound(); // Return a 404 if the category is not found
+            $this->getResponse()->setStatusCode(200);
+            return $json;
+        } else {
+            $message = $this->translator()->translate($category);
+            $this->getResponse()->setStatusCode(404);
+            return new JsonModel([
+                'success' => false,
+                'message' => $message
+            ]);
         }
     }
 

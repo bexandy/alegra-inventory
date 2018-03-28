@@ -4,6 +4,7 @@ namespace Alegra\Controller;
 
 use Alegra\Model\Warehouses;
 use Alegra\Model\WarehousesRepositoryInterface;
+use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\View\Model\JsonModel;
 use Zend\Json\Json as Json;
@@ -33,13 +34,24 @@ class WarehousesController extends AbstractRestfulController
     public function getList()
     {
         $warehouses = $this->warehousesRepository->findAllWarehouses();
-        $array = $warehouses->toArray();
-        $json = new JsonModel([
-            'success' => true,
-            'data' => $array
-        ]);
-
-        return $json;
+        if ($warehouses instanceof HydratingResultSet)
+        {
+            $array = $warehouses->toArray();
+            $data = $this->translator()->toEnglish($array);
+            $json = new JsonModel([
+                'success' => true,
+                'data' => $data
+            ]);
+            $this->getResponse()->setStatusCode(200);
+            return $json;
+        } else {
+            $message = $this->translator()->translate($warehouses);
+            $this->getResponse()->setStatusCode(404);
+            return new JsonModel([
+                'success' => false,
+                'message' => $message
+            ]);
+        }
     }
 
 
@@ -50,13 +62,20 @@ class WarehousesController extends AbstractRestfulController
 
         if ($warehouse instanceof Warehouses) {
             $array = $warehouse->toArray();
-            return new JsonModel([
+            $data = $this->translator()->toEnglish($array);
+            $json = new JsonModel([
                 'success' => true,
                 'data' => $array
             ]);
-        }
-        else {
-            return $this->notFound(); // Return a 404 if the warehouse is not found
+            $this->getResponse()->setStatusCode(200);
+            return $json;
+        } else {
+            $message = $this->translator()->translate($warehouse);
+            $this->getResponse()->setStatusCode(404);
+            return new JsonModel([
+                'success' => false,
+                'message' => $message
+            ]);
         }
     }
 

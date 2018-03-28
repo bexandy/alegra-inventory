@@ -4,12 +4,10 @@ namespace Alegra\Controller;
 
 use Alegra\Model\PriceList;
 use Alegra\Model\PriceListRepositoryInterface;
-use Alegra\Utility\Translatable;
 use Zend\Db\ResultSet\HydratingResultSet;
-use Zend\Db\ResultSet\ResultSet;
 use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\View\Model\JsonModel;
-use Zend\Json\Json as Json;
+
 
 class PriceListController extends AbstractRestfulController
 {
@@ -35,29 +33,29 @@ class PriceListController extends AbstractRestfulController
 
     public function getList()
     {
+        $prueba = '';
+        $prueba = $this->translator()->translate('Lista de Precios de Prueba');
+
         $priceLists = $this->priceListRepository->findAllPriceLists();
 
         if ($priceLists instanceof HydratingResultSet)
         {
 
             $test = $priceLists->toArray();
-
-            $data = $test;
-            //$traductor = new Translatable();
-            //$data = $traductor->toEnglish($test);
+            $data = $this->translator()->toEnglish($test);
 
             $this->getResponse()->setStatusCode(200);
             $json = new JsonModel([
                 'success' => true,
                 'data' => $data
             ]);
-            //var_dump($json);
             return $json;
         } else {
+            $message = $this->translator()->translate($priceLists);
             $this->getResponse()->setStatusCode(404);
             return new JsonModel([
                 'success' => false,
-                'message' => $priceLists
+                'message' => $message
             ]);
         }
 
@@ -71,14 +69,21 @@ class PriceListController extends AbstractRestfulController
 
         if ($priceList instanceof PriceList) {
             $arreglo = $priceList->toArray();
-            return new JsonModel([
+            $data = $this->translator()->toEnglish($arreglo);
+            $json = new JsonModel([
                 'success' => true,
-                'data' => $priceList->toArray()
+                'data' => $data
+            ]);
+            return $json;
+        } else {
+            $message = $this->translator()->translate($priceList);
+            $this->getResponse()->setStatusCode(404);
+            return new JsonModel([
+            'success' => false,
+            'message' => $message
             ]);
         }
-        else {
-            return $this->notFound(); // Return a 404 if the priceList is not found
-        }
     }
+
 
 }

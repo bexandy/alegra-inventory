@@ -23,12 +23,10 @@ class ProductController extends AbstractRestfulController
     public function __construct(
             ProductRepositoryInterface $productRepository, 
             ProductCommandInterface $productCommand
-           // Translatable $traductor
         )
     {
         $this->productRepository = $productRepository;
         $this->productCommand = $productCommand;
-    //    $this->traductor = $traductor;
     }
 
     private function notFound()
@@ -49,24 +47,19 @@ class ProductController extends AbstractRestfulController
         {
             $test = $products->toArray();
             $decode = $this->array_filter_recursive_from_alegra($test);
-
-            $data = $decode;
-            //$traductor = $this->traductor;
-            //$data = $traductor->toEnglish($decode);
-
-            $this->getResponse()->setStatusCode(200);
+            $data = $this->translator()->toEnglish($decode);
             $json = new JsonModel([
                 'success' => true,
                 'data' => $data
             ]);
-
+            $this->getResponse()->setStatusCode(200);
             return $json;
-
         } else {
+            $message = $this->translator()->translate($products);
             $this->getResponse()->setStatusCode(404);
             return new JsonModel([
                 'success' => false,
-                'message' => $products
+                'message' => $message
             ]);
         }
     }
@@ -79,16 +72,20 @@ class ProductController extends AbstractRestfulController
 
         if ($product instanceof Product) {
             $arreglo = $product->toArray();
-            return new JsonModel([
+            $data = $this->translator()->toEnglish($arreglo);
+            $json = new JsonModel([
                 'success' => true,
-                'data' => $arreglo
+                'data' => $data
             ]);
+            $this->getResponse()->setStatusCode(200);
+            return $json;
         }
         else {
+            $message = $this->translator()->translate($product);
             $this->getResponse()->setStatusCode(404);
             return new JsonModel([
                 'success' => false,
-                'message' => $product
+                'message' => $message
             ]);
         }
     }

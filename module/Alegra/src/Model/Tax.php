@@ -26,7 +26,7 @@ class Tax //extends Translatable
 	 * @param    $type   
 	 * @param    $status   
 	 */
-	public function __construct($id = '', $name = '', $percentage = '', $description = '', array $type = array(), $status = '')
+	public function __construct($id = '', $name = '', $percentage = '', $description = '', $type = '', $status = '')
 	{
 		$this->id = $id;
 		$this->name = $name;
@@ -132,7 +132,7 @@ class Tax //extends Translatable
      *
      * @return self
      */
-    public function setType(array $type)
+    public function setType($type)
     {
         $this->type = $type;
 
@@ -157,5 +157,14 @@ class Tax //extends Translatable
         $this->status = $status;
 
         return $this;
+    }
+
+    public function toArray()
+    {
+        $return = [];
+        foreach ($this as $row => $value) {
+            $return[$row] = $value;
+        }
+        return $return;
     }
 }

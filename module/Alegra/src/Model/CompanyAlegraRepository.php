@@ -51,9 +51,7 @@ class CompanyAlegraRepository implements CompanyRepositoryInterface
     	$apiUrl = $this->config['api-url']['company'];
         
         $request = new Request();
-		//$request->getHeaders()->addHeaders(array(
-		//    'Authorization' => 'Basic YmV4YW5keUBnbWFpbC5jb206NDU0NGM1YTY5MDY5MDY1NDA2Y2I='
-		//));
+
 		$request->setUri($apiUrl);
 		$request->setMethod(Request::METHOD_GET);
 
@@ -61,33 +59,23 @@ class CompanyAlegraRepository implements CompanyRepositoryInterface
         $user = $this->config['user'];
         $token = $this->config['token'];
         $client->setAuth($user, $token, Client::AUTH_BASIC);
-        //var_dump($client);
 
         try {
             $response = $client->dispatch($request);
-            //var_dump($response);
-            //echo '$response->getBody()<br>';
-            //var_dump($response->getBody());
+
         } catch (RuntimeException $e) {
             $message = $e->getMessage();
-            //echo '! Exception<br>';
-            $error = array('message' => $message);
-            //var_dump($error);
-            //die();
+            $error = $message;
             return $error;
         }
 
         if (! $response->isSuccess()) {
-            $message = $response->getStatusCode() . ': ' . $response->getReasonPhrase();
-            //echo '! $response->isSuccess()<br>';
-            $error = array('message' => $message);
-            //var_dump($error);
-            //die();
+            $message = json_decode(explode("\r\n", $response->getContent())[1]);
+            $error = 'code '.$message->code.' : '.$message->message;
             return $error;
         }
 		
 		$data = json_decode($response->getBody(), true);
-        //$hydrator = $this->hydrator;
         $hydrator = new  CompanyHydrator();
         $company = $hydrator->hydrate( $data,new Company());
 

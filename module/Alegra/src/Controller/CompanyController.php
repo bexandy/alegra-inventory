@@ -6,7 +6,6 @@ use Alegra\Model\Company;
 use Alegra\Model\CompanyRepositoryInterface;
 use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\View\Model\JsonModel;
-use Zend\Json\Json as Json;
 
 class CompanyController extends AbstractRestfulController
 {
@@ -33,31 +32,30 @@ class CompanyController extends AbstractRestfulController
     public function getList()
     {
         $company = $this->companyRepository->findCompany();
-        $array = $company->toArray();
-        $json = new JsonModel([
-            'success' => true,
-            'data' => $array
-        ]);
 
-        return $json;
+        if ($company instanceof Company)
+        {
+            $array = $company->toArray();
+            $data = $this->translator()->toEnglish($array);
+            $this->getResponse()->setStatusCode(200);
+            $json = new JsonModel([
+                'success' => true,
+                'data' => $data
+            ]);
+            return $json;
+        } else {
+            $message = $this->translator()->translate($company);
+            $this->getResponse()->setStatusCode(404);
+            return new JsonModel([
+                'success' => false,
+                'message' => $message
+            ]);
+        }
     }
-
 
     public function get($id)
     {
-
-        $company = $this->companyRepository->findCompany();
-
-        if ($company instanceof Company) {
-            $array = $company->toArray();
-            return new JsonModel([
-                'success' => true,
-                'data' => $array
-            ]);
-        }
-        else {
-            return $this->notFound(); // Return a 404 if the company is not found
-        }
+        return $this->getList();
     }
 
 }

@@ -1,11 +1,16 @@
 Ext.define('MyApp.model.ProductMapping', {
     extend: 'Ext.data.Model',
     fields: [
-        { name: 'id' },
+        { name: 'id', type: 'int', allowNull:true, useNull: true, defaultValue: null },
         { name: 'name' },
         { name: 'description' },
         { name: 'reference' },
         { name: 'tax' },
+        { name: 'taxId' , mapping: 'tax[0].id' },
+        { name: 'taxName' , mapping: 'tax[0].name' },
+        { name: 'taxPercentage' , mapping: 'tax[0].percentage' },
+        { name: 'taxDescription' , mapping: 'tax[0].description' },
+        { name: 'taxStatus' , mapping: 'tax[0].status' },
         { name: 'priceId' , mapping: 'price[0].idPriceList' },
         { name: 'priceName' , mapping: 'price[0].name' },
         { name: 'priceValue' , mapping: 'price[0].price' },

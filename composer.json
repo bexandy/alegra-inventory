@@ -21,7 +21,9 @@
         "rwoverdijk/assetmanager": "^1.7",
         "zendframework/zend-json-server": "^3.0",
         "zendframework/zend-eventmanager": "^3.2",
-        "yandex/translate-api": "1.5.x"
+        "yandex/translate-api": "1.5.x",
+        "zendframework/zend-mvc-i18n": "^1.0",
+        "zendframework/zend-i18n": "^2.7"
     },
     "autoload": {
         "psr-4": {
