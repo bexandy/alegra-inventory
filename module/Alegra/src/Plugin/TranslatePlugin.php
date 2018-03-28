@@ -45,7 +45,7 @@ class TranslatePlugin extends AbstractPlugin
             } elseif (is_array($value)){
                 $data[$row] = $this->ToEnglish($value);
             } elseif (in_array($row, $this->config['prices'])) {
-                $data[$row] = $value / $this->config['convert_currency']['rate'];
+                $data[$row] = ($value) / ($this->config['convert_currency']['rate']);
             } else {
                 $data[$row] = in_array($row, $this->config['strings']) && !is_array($value) ? $this->translate($value) : $value;
             }

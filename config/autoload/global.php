@@ -43,7 +43,7 @@ return [
             'unitCost'
         ],
         'convert_currency' => [
-            'rate' => 2450,
+            'rate' => 2784.78 ,
             'api_url' => 'http://apilayer.net/api/',
             'endpoint' => 'live',
             'access_key' => '697bee86c1bd1128bf49fe7270dfbb97',
