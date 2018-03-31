@@ -43,8 +43,14 @@ class ProductCommand implements ProductCommandInterface
 
     	$hydrator = new ProductHydrator();
     	$data = $hydrator->extract($product);
-    	$filter = $this->array_filter_recursive($data);
-    	$json = new JsonModel($filter);
+
+        $data['tax'] = $this->array_filter_recursive($data['tax']);
+        $data['inventory'] = $this->array_filter_recursive($data['inventory']);
+        $data['price'] = $this->array_filter_recursive($data['price']);
+        $data['category'] = $this->array_filter_recursive($data['category']);
+        $data = $this->array_filter_recursive($data);
+
+    	$json = new JsonModel($data);
 
     	$apiUrl = $this->config['api-url']['items'];
 

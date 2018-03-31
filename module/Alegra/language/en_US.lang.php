@@ -80,7 +80,7 @@ return [
     'Pasivos corrientes'	=> 'Current Liabilities ',
     'Cuentas por pagar'	=> 'Accounts Payable',
     'Avances y anticipos recibidos'	=> 'Revenue Received in Advance',
-    'Cuentas por pagar a proveedores '	=> 'Accounts Payable to Suppliers',
+    'Cuentas por pagar a proveedores'	=> 'Accounts Payable to Suppliers',
     'Otras cuentas por pagar'	=> 'Other Accounts Payables',
     'Devoluciones de clientes'	=> 'Customers Return',
     'Obligaciones financieras'	=> 'Financial Obligations',
@@ -120,7 +120,8 @@ return [
     'code 404 : No se encontró la lista de precios registrada en Alegra' => 'code 404: The price list registered in Alegra was not found',
     'code 404 : WarehouseNotFound en Alegra' => 'code 404: WarehouseNotFound in Alegra',
     'Impuesto al Valor Agregado' => 'Value Added Tax',
-    'OTRO' => 'OTHER'
+    'OTRO' => 'OTHER',
+    'Principal' => 'Main'
 
     
 ];

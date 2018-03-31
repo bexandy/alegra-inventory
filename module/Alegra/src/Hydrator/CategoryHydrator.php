@@ -3,6 +3,7 @@
 namespace Alegra\Hydrator;
 
 
+use Alegra\Filter\CategoryFilter;
 use Alegra\Model\Category;
 use Zend\Hydrator\HydratorInterface;
 
@@ -13,6 +14,16 @@ class CategoryHydrator implements HydratorInterface
         // TODO: Implement hydrate() method.
         if (! $object instanceof Category) {
             return $object;
+        }
+
+        $filter = new CategoryFilter();
+        $test = $filter->validate($data);
+
+        if ($test->isValid()){
+            $data = $test->getValues();
+        } else {
+            $noValid = str_replace(array('},','":{"','"','}','{'),array('|','->',' ','',''),json_encode($test->getMessages()));
+            return $noValid;
         }
 
         if ($this->propertyAvailable('id', $data)) {
@@ -53,8 +64,7 @@ class CategoryHydrator implements HydratorInterface
 
     protected function propertyAvailable($property, $data)
     {
-        return (array_key_exists($property, $data)
-            && !empty($data[$property]));
+        return array_key_exists($property, $data);
     }
 
 }

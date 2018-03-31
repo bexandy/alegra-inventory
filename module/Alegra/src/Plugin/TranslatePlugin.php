@@ -31,9 +31,9 @@ class TranslatePlugin extends AbstractPlugin
         $this->config = $config;
     }
 
-    public function translate($string)
+    public function translate($message, $textDomain = 'default', $locale = null)
     {
-        return $this->translator->translate($string);
+        return $this->translator->translate($message, $textDomain, $locale);
     }
 
     public function toEnglish($data)
@@ -43,11 +43,31 @@ class TranslatePlugin extends AbstractPlugin
             if (is_null($value) || $value == '') {
                 $data[$row] = $value;
             } elseif (is_array($value)){
-                $data[$row] = $this->ToEnglish($value);
+                $data[$row] = $this->toEnglish($value);
             } elseif (in_array($row, $this->config['prices'])) {
-                $data[$row] = ($value) / ($this->config['convert_currency']['rate']);
+                $price = ($value) / ($this->config['convert_currency']['rate']);
+                $data[$row] = number_format($price,2,'.','');
             } else {
                 $data[$row] = in_array($row, $this->config['strings']) && !is_array($value) ? $this->translate($value) : $value;
+            }
+
+        }
+        return $data;
+    }
+
+    public function toSpanish($data)
+    {
+        foreach ($data as $row => $value) {
+
+            if (is_null($value) || $value == '') {
+                $data[$row] = $value;
+            } elseif (is_array($value)){
+                $data[$row] = $this->toSpanish($value);
+            } elseif (in_array($row, $this->config['prices'])) {
+                $price = ($value) * ($this->config['convert_currency']['rate']);
+                $data[$row] = number_format($price,2,'.','');
+            } else {
+                $data[$row] = in_array($row, $this->config['strings']) && !is_array($value) ? $this->translate($value, 'default', 'es_ES') : $value;
             }
 
         }

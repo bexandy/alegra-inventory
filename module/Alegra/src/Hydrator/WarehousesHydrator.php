@@ -3,6 +3,7 @@
 namespace Alegra\Hydrator;
 
 
+use Alegra\Filter\WarehousesFilter;
 use Alegra\Model\Warehouses;
 use Zend\Hydrator\HydratorInterface;
 
@@ -13,6 +14,16 @@ class WarehousesHydrator implements HydratorInterface
         // TODO: Implement hydrate() method.
         if (! $object instanceof Warehouses) {
             return $object;
+        }
+
+        $filter = new WarehousesFilter();
+        $test = $filter->validate($data);
+
+        if ($test->isValid()){
+            $data = $test->getValues();
+        } else {
+            $noValid = str_replace(array('},','":{"','"','}','{'),array('|','->',' ','',''),json_encode($test->getMessages()));
+            return $noValid;
         }
 
         if ($this->propertyAvailable('id', $data)) {
@@ -61,8 +72,7 @@ class WarehousesHydrator implements HydratorInterface
 
     protected function propertyAvailable($property, $data)
     {
-        return (array_key_exists($property, $data)
-            && !empty($data[$property]));
+        return array_key_exists($property, $data);
     }
 
 }

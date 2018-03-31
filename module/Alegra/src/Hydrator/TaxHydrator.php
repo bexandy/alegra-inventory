@@ -3,6 +3,7 @@
 namespace Alegra\Hydrator;
 
 
+use Alegra\Filter\TaxFilter;
 use Alegra\Model\Tax;
 use Zend\Hydrator\HydratorInterface;
 
@@ -15,9 +16,20 @@ class TaxHydrator implements HydratorInterface
             return $object;
         }
 
+        $filter = new TaxFilter();
+        $test = $filter->validate($data);
+
+        if ($test->isValid()){
+            $data = $test->getValues();
+        } else {
+            $noValid = str_replace(array('},','":{"','"','}','{'),array('|','->',' ','',''),json_encode($test->getMessages()));
+            return $noValid;
+        }
+
         if ($this->propertyAvailable('id', $data)) {
             $object->setId($data['id']);
         }
+
 
         if ($this->propertyAvailable('name', $data)) {
             $object->setName($data['name']);
@@ -53,8 +65,7 @@ class TaxHydrator implements HydratorInterface
 
     protected function propertyAvailable($property, $data)
     {
-        return (array_key_exists($property, $data)
-            && !empty($data[$property]));
+        return array_key_exists($property, $data);
     }
 
 }

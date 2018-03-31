@@ -7,6 +7,7 @@
  */
 namespace Alegra\Hydrator;
 
+use Alegra\Filter\ProductFilter;
 use Alegra\Model\Product;
 use Alegra\Model\PriceList;
 use Alegra\Model\Tax;
@@ -54,6 +55,20 @@ class ProductHydrator implements HydratorInterface
         // TODO: Implement hydrate() method.
         if (! $object instanceof Product) {
             return $object;
+        }
+
+        $filter = new ProductFilter();
+        $test = $filter->validate($data);
+
+        if ($test->isValid()){
+            $data = $test->getValues();
+        } else {
+            $noValid = str_replace(array('},','":{"','"','}','{'),array('|','->',' ','',''),json_encode($test->getMessages()));
+            return $noValid;
+        }
+
+        if ($this->propertyAvailable('id', $data)) {
+            $object->setId($data['id']);
         }
 
         if ($this->propertyAvailable('id', $data)) {
@@ -105,6 +120,10 @@ class ProductHydrator implements HydratorInterface
         }
 
         if ($this->propertyAvailable('category', $data)) {
+            if ($data['category'] === '')
+            {
+                $data['category'] = [];
+            }
             $object->setCategory(
                 $this->childHydrator['category']->hydrate(
                     $data['category'], 
@@ -114,9 +133,13 @@ class ProductHydrator implements HydratorInterface
         }
 
         if ($this->propertyAvailable('inventory', $data)) {
+            if ($data['inventory'] === '')
+            {
+                $data['inventory'] = [];
+            }
             $object->setInventory(
                 $this->childHydrator['inventory']->hydrate(
-                    $data['inventory'], 
+                    $data['inventory'],
                     $this->childEntity['inventory']
                 )
             );

@@ -108,8 +108,7 @@ class CompanyHydrator implements HydratorInterface
 
     protected function propertyAvailable($property, $data)
     {
-        return (array_key_exists($property, $data)
-            && !empty($data[$property]));
+        return (array_key_exists($property, $data));
     }
 
 }

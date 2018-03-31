@@ -7,6 +7,7 @@
  */
 namespace Alegra\Hydrator;
 
+use Alegra\Filter\InventoryFilter;
 use Alegra\Model\Inventory;
 use Alegra\Model\Warehouses;
 use Zend\Hydrator\HydratorInterface;
@@ -46,6 +47,20 @@ class InventoryHydrator implements HydratorInterface
             return $object;
         }
 
+        $filter = new InventoryFilter();
+        $test = $filter->validate($data);
+
+        if ($test->isValid()){
+            $data = $test->getValues();
+        } else {
+            $noValid = str_replace(array('},','":{"','"','}','{'),array('|','->',' ','',''),json_encode($test->getMessages()));
+            return $noValid;
+        }
+
+        if ($this->propertyAvailable('id', $data)) {
+            $object->setId($data['id']);
+        }
+
         if ($this->propertyAvailable('unit', $data)) {
             $object->setUnit($data['unit']);
         }
@@ -79,8 +94,7 @@ class InventoryHydrator implements HydratorInterface
 
     protected function propertyAvailable($property, $data)
     {
-        return (array_key_exists($property, $data)
-            && !empty($data[$property]));
+        return (array_key_exists($property, $data));
     }
 
 }

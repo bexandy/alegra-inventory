@@ -45,9 +45,19 @@ class ProductController extends AbstractRestfulController
 
         if ($products instanceof HydratingResultSet)
         {
-            $test = $products->toArray();
-            $decode = $this->array_filter_recursive_from_alegra($test);
-            $data = $this->translator()->toEnglish($decode);
+            $data = $products->toArray();
+
+            foreach ($data as $key => $product)
+            {
+                $product['tax'] = $this->array_filter_recursive($product['tax']);
+                $product['inventory'] = $this->array_filter_recursive($product['inventory']);
+                $product['price'] = $this->array_filter_recursive($product['price']);
+                $product['category'] = $this->array_filter_recursive($product['category']);
+                $product = $this->array_filter_recursive($product);
+                $data[$key] = $product;
+            }
+
+            $data = $this->translator()->toEnglish($data);
             $json = new JsonModel([
                 'success' => true,
                 'data' => $data
@@ -72,6 +82,14 @@ class ProductController extends AbstractRestfulController
 
         if ($product instanceof Product) {
             $arreglo = $product->toArray();
+
+            $arreglo['tax'] = $this->array_filter_recursive($arreglo['tax']);
+            $arreglo['inventory'] = $this->array_filter_recursive($arreglo['inventory']);
+            $arreglo['price'] = $this->array_filter_recursive($arreglo['price']);
+            $arreglo['category'] = $this->array_filter_recursive($arreglo['category']);
+            $arreglo = $this->array_filter_recursive($arreglo);
+
+            
             $data = $this->translator()->toEnglish($arreglo);
             $json = new JsonModel([
                 'success' => true,
@@ -96,8 +114,10 @@ class ProductController extends AbstractRestfulController
     public function create($data)
     {
 
-        $decode = $this->array_filter_recursive_from_sencha($data);
+        $decode = $this->translator()->toSpanish($data);
+
         unset($decode['id']);
+
         if (! $decode)
             return $this->notFound();
 
@@ -108,9 +128,19 @@ class ProductController extends AbstractRestfulController
 
         if ($enviar instanceof Product) {
             $arreglo = $enviar->toArray();
+
+            $arreglo['tax'] = $this->array_filter_recursive($arreglo['tax']);
+            $arreglo['inventory'] = $this->array_filter_recursive($arreglo['inventory']);
+            $arreglo['price'] = $this->array_filter_recursive($arreglo['price']);
+            $arreglo['category'] = $this->array_filter_recursive($arreglo['category']);
+            $arreglo = $this->array_filter_recursive($arreglo);
+
+            $data = $this->translator()->toEnglish($arreglo);
+            $this->getResponse()->setStatusCode(200);
+
             return new JsonModel([
                 'success' => true,
-                'data' => $arreglo
+                'data' => $data
             ]);
         }
         else {
@@ -151,7 +181,7 @@ class ProductController extends AbstractRestfulController
     {
         $resource = $id;
 
-        $data = $this->convert_to_null($data);
+        $data = $this->translator()->toSpanish($data);
 
         if (! $data)
             return $this->notFound();
@@ -165,6 +195,14 @@ class ProductController extends AbstractRestfulController
 
         if ($enviar instanceof Product) {
             $arreglo = $enviar->toArray();
+
+            $arreglo['tax'] = $this->array_filter_recursive($arreglo['tax']);
+            $arreglo['inventory'] = $this->array_filter_recursive($arreglo['inventory']);
+            $arreglo['price'] = $this->array_filter_recursive($arreglo['price']);
+            $arreglo['category'] = $this->array_filter_recursive($arreglo['category']);
+            $arreglo = $this->array_filter_recursive($arreglo);
+
+            $data = $this->translator()->toEnglish($arreglo);
             $this->getResponse()->setStatusCode(200);
             return new JsonModel([
                 'success' => true,
@@ -181,40 +219,21 @@ class ProductController extends AbstractRestfulController
 
     }
 
-
-    function array_filter_recursive_from_sencha($input)
+    function array_filter_recursive($input)
     {
         foreach ($input as &$value)
         {
             if (is_array($value))
             {
-                $value = $this->array_filter_recursive_from_sencha($value);
+                if (empty($value))
+                    $value = null;
+                else
+                    $value = $this->array_filter_recursive($value);
             }
-        }   
+        }
 
-        $filter = array_filter($input, function($v){ return !is_null($v);});
+        $filter = array_filter($input);
         return $filter;
-    }
-
-    function array_filter_recursive_from_alegra($input)
-    {
-        foreach ($input as &$value)
-        {
-            if (is_array($value))
-            {
-                $value = $this->array_filter_recursive_from_alegra($value);
-            }
-        }   
-
-        $filter = array_filter($input, function($v){ return is_null($v) || $v != '';});
-        return $filter;
-    }
-
-    function convert_to_null($input)
-    {
-        foreach ($input as &$value)
-            $value = ($value == '') ? null : $value;
-        return $input;
     }
 
 }
