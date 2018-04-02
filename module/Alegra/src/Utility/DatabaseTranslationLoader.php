@@ -10,7 +10,6 @@ namespace Alegra\Utility;
 
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Adapter\AdapterInterface as DbAdapter;
-use Zend\Db\Adapter\AdapterInterface;
 use Zend\Db\Sql\Sql;
 use Zend\I18n\Translator\Loader\RemoteLoaderInterface;
 use Zend\I18n\Translator\Plural\Rule as PluralRule;

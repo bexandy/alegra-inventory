@@ -3,15 +3,14 @@
 namespace Alegra;
 
 use Alegra\Factory\DatabaseTranslationCommandFactory;
+use Alegra\Factory\MyTranslatorServiceFactory;
 use Alegra\Factory\TranslatorPluginFactory;
 use Alegra\Utility\DatabaseTranslationCommand;
 use Alegra\Utility\DatabaseTranslationCommandInterface;
 use Alegra\Utility\DatabaseTranslationLoader;
 use Alegra\Utility\MyTranslator;
-use Alegra\Utility\MyTranslatorServiceFactory;
 use Alegra\Utility\RealtimeTranslatorInterface;
 use Zend\I18n\Translator\Loader\RemoteLoaderInterface;
-use Zend\I18n\Translator\TranslatorServiceFactory;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
 

@@ -6,13 +6,11 @@
  * Time: 07:25 PM
  */
 
-namespace Alegra\Utility;
+namespace Alegra\Factory;
 
-use Alegra\Factory\DatabaseTranslationLoaderFactory;
+use Alegra\Utility\MyTranslator;
 use Interop\Container\ContainerInterface;
-use Zend\I18n\Translator\LoaderPluginManager;
 use Zend\I18n\Translator\TranslatorServiceFactory;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
 
 class MyTranslatorServiceFactory extends TranslatorServiceFactory
