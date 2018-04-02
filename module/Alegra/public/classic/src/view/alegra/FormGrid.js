@@ -176,7 +176,7 @@ Ext.define('MyApp.view.alegra.FormGrid', {
                             fieldLabel: 'Description',
                             xtype: 'textarea',
                             name: 'description',
-                            maxLength: 150
+                            maxLength: 500
                         },
                         {
                             xtype: 'combobox',                                        
