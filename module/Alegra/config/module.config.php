@@ -2,9 +2,14 @@
 
 namespace Alegra;
 
+use Alegra\Factory\ApiCurrencyLayerFactory;
+use Alegra\Factory\CurrencyConverterPluginFactory;
 use Alegra\Factory\DatabaseTranslationCommandFactory;
 use Alegra\Factory\MyTranslatorServiceFactory;
 use Alegra\Factory\TranslatorPluginFactory;
+use Alegra\Plugin\CurrencyConverterPlugin;
+use Alegra\Utility\ApiCurrencyLayer;
+use Alegra\Utility\CurrencyExchangeRateInterface;
 use Alegra\Utility\DatabaseTranslationCommand;
 use Alegra\Utility\DatabaseTranslationCommandInterface;
 use Alegra\Utility\DatabaseTranslationLoader;
@@ -33,7 +38,8 @@ return [
             Model\ProductCommandInterface::class => Model\ProductCommand::class,
             RemoteLoaderInterface::class => Utility\DatabaseTranslationLoader::class,
             RealtimeTranslatorInterface::class => Utility\ApiYandex::class,
-            DatabaseTranslationCommandInterface::class => DatabaseTranslationCommand::class
+            DatabaseTranslationCommandInterface::class => DatabaseTranslationCommand::class,
+            CurrencyExchangeRateInterface::class => ApiCurrencyLayer::class
         ],
         'factories' => [
             Model\CategoryRepository::class => Factory\CategoryRepositoryFactory::class,
@@ -46,7 +52,9 @@ return [
             Utility\DatabaseTranslationLoader::class => Factory\DatabaseTranslationLoaderFactory::class,
             Utility\ApiYandex::class => Factory\ApiYandexFactory::class,
             DatabaseTranslationCommand::class => DatabaseTranslationCommandFactory::class,
-            MyTranslator::class => MyTranslatorServiceFactory::class
+            MyTranslator::class => MyTranslatorServiceFactory::class,
+            ApiCurrencyLayer::class => ApiCurrencyLayerFactory::class,
+            CurrencyConverterPlugin::class => CurrencyConverterPluginFactory::class
 
         ],
     ],
@@ -160,6 +168,7 @@ return [
     'controller_plugins' => [
         'factories' => [
             'translator' => TranslatorPluginFactory::class,
+            'currencyConverter' => CurrencyConverterPluginFactory::class
         ],
     ],
 ];

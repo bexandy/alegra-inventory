@@ -9,6 +9,7 @@
 namespace Alegra\Factory;
 
 
+use Alegra\Plugin\CurrencyConverterPlugin;
 use Alegra\Plugin\TranslatePlugin;
 use Alegra\Utility\DatabaseTranslationCommandInterface;
 use Alegra\Utility\DatabaseTranslationLoader;
@@ -39,8 +40,15 @@ class TranslatorPluginFactory implements FactoryInterface
         $translator->getPluginManager()->setFactory(DatabaseTranslationLoader::class, DatabaseTranslationLoaderFactory::class);
         $realtimeTranslator = $container->get(RealtimeTranslatorInterface::class);
         $databaseTranslationCommand = $container->get(DatabaseTranslationCommandInterface::class);
+        $currencyconverter = $container->get(CurrencyConverterPlugin::class);
 
-        return new TranslatePlugin($translator, $this->config['translatable'], $realtimeTranslator, $databaseTranslationCommand);
+        return new TranslatePlugin(
+            $translator,
+            $this->config['translatable'],
+            $realtimeTranslator,
+            $databaseTranslationCommand,
+            $currencyconverter
+        );
     }
 
 }

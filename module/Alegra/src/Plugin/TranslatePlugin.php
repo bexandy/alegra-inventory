@@ -29,16 +29,24 @@ class TranslatePlugin extends AbstractPlugin
 
     protected $databaseTranslationCommand;
 
+    protected $currencyConverter;
+
     /**
      * TranslatePlugin constructor.
      * @param Translator $translator
      */
-    public function __construct(MyTranslator $translator, $config, RealtimeTranslatorInterface $realtimeTranslator, DatabaseTranslationCommandInterface $databaseTranslationCommand)
+    public function __construct(
+        MyTranslator $translator,
+        $config,
+        RealtimeTranslatorInterface $realtimeTranslator,
+        DatabaseTranslationCommandInterface $databaseTranslationCommand,
+        CurrencyConverterPlugin $currencyConverterPlugin)
     {
         $this->translator = $translator;
         $this->config = $config;
         $this->realtimeTranslator = $realtimeTranslator;
         $this->databaseTranslationCommand = $databaseTranslationCommand;
+        $this->currencyConverter = $currencyConverterPlugin;
     }
 
     public function translate($message, $textDomain = 'default', $locale = null)
@@ -77,7 +85,8 @@ class TranslatePlugin extends AbstractPlugin
             } elseif (is_array($value)){
                 $data[$row] = $this->toEnglish($value);
             } elseif (in_array($row, $this->config['prices'])) {
-                $price = ($value) / ($this->config['convert_currency']['rate']);
+                //$price = ($value) / ($this->config['convert_currency']['rate']);
+                $price = $this->currencyConverter->convertCOPtoUSD($value);
                 $data[$row] = number_format($price,2,'.','');
             } else {
                 $data[$row] = in_array($row, $this->config['strings']) && !is_array($value) ? $this->translate($value, 'default', 'en_US') : $value;
@@ -96,7 +105,8 @@ class TranslatePlugin extends AbstractPlugin
             } elseif (is_array($value)){
                 $data[$row] = $this->toSpanish($value);
             } elseif (in_array($row, $this->config['prices'])) {
-                $price = ($value) * ($this->config['convert_currency']['rate']);
+                //$price = ($value) * ($this->config['convert_currency']['rate']);
+                $price = $this->currencyConverter->convertUSDtoCOP($value);
                 $data[$row] = number_format($price,2,'.','');
             } else {
                 $data[$row] = in_array($row, $this->config['strings']) && !is_array($value) ? $this->translate($value, 'default', 'es_ES') : $value;
