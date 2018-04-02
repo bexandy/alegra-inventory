@@ -41,6 +41,8 @@ class ProductController extends AbstractRestfulController
 
     public function getList()
     {
+        $prueba = '';
+        $prueba = $this->translator()->translate('Lista de Precios de Prueba');
         $products = $this->productRepository->findAllProducts();
 
         if ($products instanceof HydratingResultSet)

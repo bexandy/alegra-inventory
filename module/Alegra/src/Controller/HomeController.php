@@ -23,7 +23,16 @@ class HomeController extends AbstractRestfulController
 
     public function testAction()
     {
-        
+
+        $prueba = '';
+        $prueba = $this->translator()->translate('Lista de Precios de Prueba');
+
+        $json = new JsonModel([
+            'success' => true,
+            'data' => $prueba
+        ]);
+
+        return $json;
 
         //$reader = new \Zend\I18n\Translator\Loader\PhpArray();
 

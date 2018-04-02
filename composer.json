@@ -23,7 +23,8 @@
         "zendframework/zend-eventmanager": "^3.2",
         "yandex/translate-api": "1.5.x",
         "zendframework/zend-mvc-i18n": "^1.0",
-        "zendframework/zend-i18n": "^2.7"
+        "zendframework/zend-i18n": "^2.7",
+        "zendframework/zend-log": "^2.9"
     },
     "autoload": {
         "psr-4": {

@@ -10,7 +10,12 @@ namespace Alegra\Factory;
 
 
 use Alegra\Plugin\TranslatePlugin;
+use Alegra\Utility\DatabaseTranslationCommandInterface;
+use Alegra\Utility\DatabaseTranslationLoader;
+use Alegra\Utility\MyTranslator;
+use Alegra\Utility\RealtimeTranslatorInterface;
 use Interop\Container\ContainerInterface;
+use Zend\I18n\Translator\LoaderPluginManager;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 class TranslatorPluginFactory implements FactoryInterface
@@ -20,7 +25,7 @@ class TranslatorPluginFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         // TODO: Implement __invoke() method.
-        if (!$container->has('MvcTranslator')) {
+        if (!$container->has(MyTranslator::class)) {
             throw new \Exception('Zend I18n Translator not configured');
         }
 
@@ -29,8 +34,13 @@ class TranslatorPluginFactory implements FactoryInterface
         }
 
         $this->config = $container->get('configuration');
-        $translator = $container->get('MvcTranslator');
-        return new TranslatePlugin($translator, $this->config['translatable']);
+        $translator = $container->get(MyTranslator::class);
+        $translator->setPluginManager(new LoaderPluginManager($container));
+        $translator->getPluginManager()->setFactory(DatabaseTranslationLoader::class, DatabaseTranslationLoaderFactory::class);
+        $realtimeTranslator = $container->get(RealtimeTranslatorInterface::class);
+        $databaseTranslationCommand = $container->get(DatabaseTranslationCommandInterface::class);
+
+        return new TranslatePlugin($translator, $this->config['translatable'], $realtimeTranslator, $databaseTranslationCommand);
     }
 
 }

@@ -2,7 +2,16 @@
 
 namespace Alegra;
 
+use Alegra\Factory\DatabaseTranslationCommandFactory;
 use Alegra\Factory\TranslatorPluginFactory;
+use Alegra\Utility\DatabaseTranslationCommand;
+use Alegra\Utility\DatabaseTranslationCommandInterface;
+use Alegra\Utility\DatabaseTranslationLoader;
+use Alegra\Utility\MyTranslator;
+use Alegra\Utility\MyTranslatorServiceFactory;
+use Alegra\Utility\RealtimeTranslatorInterface;
+use Zend\I18n\Translator\Loader\RemoteLoaderInterface;
+use Zend\I18n\Translator\TranslatorServiceFactory;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
@@ -23,7 +32,9 @@ return [
             Model\WarehousesRepositoryInterface::class => Model\WarehousesRepository::class,
             Model\ProductRepositoryInterface::class => Model\ProductRepository::class,
             Model\ProductCommandInterface::class => Model\ProductCommand::class,
-            //Utility\Translatable::class => Utility\Translatable::class,
+            RemoteLoaderInterface::class => Utility\DatabaseTranslationLoader::class,
+            RealtimeTranslatorInterface::class => Utility\ApiYandex::class,
+            DatabaseTranslationCommandInterface::class => DatabaseTranslationCommand::class
         ],
         'factories' => [
             Model\CategoryRepository::class => Factory\CategoryRepositoryFactory::class,
@@ -33,7 +44,11 @@ return [
             Model\WarehousesRepository::class => Factory\WarehousesRepositoryFactory::class,
             Model\ProductRepository::class => Factory\ProductRepositoryFactory::class,
             Model\ProductCommand::class => Factory\ProductCommandFactory::class,
-            //Utility\Translatable::class => InvokableFactory::class,
+            Utility\DatabaseTranslationLoader::class => Factory\DatabaseTranslationLoaderFactory::class,
+            Utility\ApiYandex::class => Factory\ApiYandexFactory::class,
+            DatabaseTranslationCommand::class => DatabaseTranslationCommandFactory::class,
+            MyTranslator::class => MyTranslatorServiceFactory::class
+
         ],
     ],
     'controllers' => [
@@ -128,12 +143,18 @@ return [
         ],
     ],
     'translator' => [
-        'locale' => 'en_US',
+        'locale' => 'es_ES',
         'translation_file_patterns' => [
             [
                 'type'     => 'phpArray',
                 'base_dir' => __DIR__ . '/../language',
                 'pattern'  => '%s.lang.php',
+            ],
+        ],
+        'remote_translation' => [
+            [
+                'type'     => DatabaseTranslationLoader::class,
+
             ],
         ],
     ],

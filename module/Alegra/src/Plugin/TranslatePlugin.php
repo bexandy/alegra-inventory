@@ -9,8 +9,12 @@
 namespace Alegra\Plugin;
 
 
+use Alegra\Utility\DatabaseTranslationCommandInterface;
+use Alegra\Utility\MyTranslator;
+use Alegra\Utility\RealtimeTranslatorInterface;
+use Zend\I18n\Translator\Translator;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
-use Zend\Mvc\I18n\Translator;
+
 
 class TranslatePlugin extends AbstractPlugin
 {
@@ -21,19 +25,47 @@ class TranslatePlugin extends AbstractPlugin
 
     protected $config;
 
+    protected $realtimeTranslator;
+
+    protected $databaseTranslationCommand;
+
     /**
      * TranslatePlugin constructor.
      * @param Translator $translator
      */
-    public function __construct(Translator $translator, $config)
+    public function __construct(MyTranslator $translator, $config, RealtimeTranslatorInterface $realtimeTranslator, DatabaseTranslationCommandInterface $databaseTranslationCommand)
     {
         $this->translator = $translator;
         $this->config = $config;
+        $this->realtimeTranslator = $realtimeTranslator;
+        $this->databaseTranslationCommand = $databaseTranslationCommand;
     }
 
     public function translate($message, $textDomain = 'default', $locale = null)
     {
-        return $this->translator->translate($message, $textDomain, $locale);
+        if (is_null($locale))
+        {
+            $locale = 'es_ES';
+        }
+
+        $translation = $this->translator->translate($message, $textDomain, $locale);
+
+
+        if ($translation === $message) {
+            $messages = $this->translator->getAllMessages($textDomain, $locale);
+            if (! isset($messages[$message]))
+            {
+                $translation = $this->realtimeTranslator->translate($message, $locale);
+
+                $this->databaseTranslationCommand->addMessage($locale, $textDomain, $message, $translation, 0);
+                $this->translator->reloadMessages($textDomain, $locale);
+
+                $alt_Locale = ($locale === 'en_US') ? 'es_ES' : 'en_US';
+                $this->databaseTranslationCommand->addMessage($alt_Locale, $textDomain, $translation, $message, 0);
+                $this->translator->reloadMessages($textDomain, $alt_Locale);
+            }
+        }
+        return $translation;
     }
 
     public function toEnglish($data)
@@ -48,7 +80,7 @@ class TranslatePlugin extends AbstractPlugin
                 $price = ($value) / ($this->config['convert_currency']['rate']);
                 $data[$row] = number_format($price,2,'.','');
             } else {
-                $data[$row] = in_array($row, $this->config['strings']) && !is_array($value) ? $this->translate($value) : $value;
+                $data[$row] = in_array($row, $this->config['strings']) && !is_array($value) ? $this->translate($value, 'default', 'en_US') : $value;
             }
 
         }
