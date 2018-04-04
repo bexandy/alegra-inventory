@@ -1,4 +1,4 @@
-Ext.define('MyApp.model.TaxesMapping', {
+Ext.define('Alegra.model.TaxesMapping', {
     extend: 'Ext.data.Model',
     fields: [
         { name: 'id', type: 'int', allowNull:true, useNull: true, defaultValue: null  },

@@ -1,7 +1,7 @@
-Ext.define('MyApp.model.Inventory', {
+Ext.define('Alegra.model.Inventory', {
     extend: 'Ext.data.Model',
     requires:[
-        'MyApp.model.Warehouses',
+        'Alegra.model.Warehouses',
     ],
     fields: [
     	{ name: 'initialQuantity', type: 'int', allowNull:true, useNull: true, defaultValue: null  },
@@ -11,7 +11,7 @@ Ext.define('MyApp.model.Inventory', {
     ],
     hasMany: [
         {                                                 
-            model: 'MyApp.model.Warehouses',                                                  
+            model: 'Alegra.model.Warehouses',                                                  
             name: 'warehouses',
             associationKey: 'warehouses'                                             
         }
@@ -21,5 +21,5 @@ Ext.define('MyApp.model.Inventory', {
             writeRecordId: false,
             writeAllFields: false
     },
-    belongsTo: 'MyApp.model.Product'
+    belongsTo: 'Alegra.model.Product'
 });

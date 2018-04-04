@@ -1,4 +1,4 @@
-Ext.define('MyApp.utility.VTypes', {
+Ext.define('Alegra.utility.VTypes', {
  
     init: function () {
         var me = this;

@@ -1,4 +1,4 @@
-Ext.define('MyApp.view.alegra.FormGridController', {
+Ext.define('Alegra.view.alegra.FormGridController', {
     extend: 'Ext.app.ViewController',
 
     alias: 'controller.formgrid',

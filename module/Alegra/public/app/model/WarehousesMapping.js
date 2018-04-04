@@ -1,4 +1,4 @@
-Ext.define('MyApp.model.WarehousesMapping', {
+Ext.define('Alegra.model.WarehousesMapping', {
     extend: 'Ext.data.Model',
     fields: [
         { name: 'id', type: 'int', allowNull:true, useNull: true, defaultValue: null  },

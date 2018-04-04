@@ -1,18 +1,18 @@
-Ext.define('MyApp.view.alegra.ProductForm', {
+Ext.define('Alegra.view.alegra.ProductForm', {
     extend: 'Ext.form.Panel',
     requires: [
         'Ext.grid.*',
         'Ext.form.*',
         'Ext.layout.container.Column',
-        'MyApp.model.ProductMapping',
-        'MyApp.store.PriceListMapping',
-        'MyApp.store.TaxesMapping',
-        'MyApp.store.CategoriesMapping',
-        'MyApp.store.WarehousesMapping',
-        'MyApp.store.Units',
+        'Alegra.model.ProductMapping',
+        'Alegra.store.PriceListMapping',
+        'Alegra.store.TaxesMapping',
+        'Alegra.store.CategoriesMapping',
+        'Alegra.store.WarehousesMapping',
+        'Alegra.store.Units',
 
-        'MyApp.view.alegra.ProductFormController',
-        'MyApp.utility.VTypes'
+        'Alegra.view.alegra.ProductFormController',
+        'Alegra.utility.VTypes'
 
     ],
 
@@ -89,7 +89,7 @@ Ext.define('MyApp.view.alegra.ProductForm', {
                             //width: '50%',
                             items: [{
                                 xtype: 'combobox',                                        
-                                store: Ext.create('MyApp.store.PriceListMapping'),
+                                store: Ext.create('Alegra.store.PriceListMapping'),
                                 displayField: 'name',
                                 valueField: 'idPriceList',
                                 label: 'Name',
@@ -129,7 +129,7 @@ Ext.define('MyApp.view.alegra.ProductForm', {
                     },
                     {
                         xtype: 'combobox',                                        
-                        store: Ext.create('MyApp.store.TaxesMapping'),
+                        store: Ext.create('Alegra.store.TaxesMapping'),
                         displayField: 'name',
                         valueField: 'id',
                         label: 'Tax Name',
@@ -142,7 +142,7 @@ Ext.define('MyApp.view.alegra.ProductForm', {
                     },
                     {
                         xtype: 'combobox',                                        
-                        store: Ext.create('MyApp.store.CategoriesMapping'),
+                        store: Ext.create('Alegra.store.CategoriesMapping'),
                         displayField: 'name',
                         valueField: 'id',
                         label: 'Category Name',
@@ -194,7 +194,7 @@ Ext.define('MyApp.view.alegra.ProductForm', {
                         {
                             //margin: '0 0 5 5',
                             xtype: 'combobox',                                        
-                            store: Ext.create('MyApp.store.Units'),
+                            store: Ext.create('Alegra.store.Units'),
                             displayField: 'name',
                             valueField: 'name',
                             label: 'Unit',
@@ -227,7 +227,7 @@ Ext.define('MyApp.view.alegra.ProductForm', {
                         {
                             //margin: '0 0 5 5',
                             xtype: 'combobox',                                        
-                            store: Ext.create('MyApp.store.WarehousesMapping'),
+                            store: Ext.create('Alegra.store.WarehousesMapping'),
                             displayField: 'name',
                             valueField: 'id',
                             label: 'Warehouse',

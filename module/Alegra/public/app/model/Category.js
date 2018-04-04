@@ -1,4 +1,4 @@
-Ext.define('MyApp.model.Category', {
+Ext.define('Alegra.model.Category', {
     extend: 'Ext.data.Model',
     idProperty: 'id',
     fields: [
@@ -23,5 +23,5 @@ Ext.define('MyApp.model.Category', {
             writeRecordId: false,
             writeAllFields: false
     },
-    belongsTo: 'MyApp.model.Product'
+    belongsTo: 'Alegra.model.Product'
 });

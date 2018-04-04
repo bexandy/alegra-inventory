@@ -1,7 +1,7 @@
-Ext.define('MyApp.store.PriceListMapping', {
+Ext.define('Alegra.store.PriceListMapping', {
     extend: 'Ext.data.Store',
     alias: 'store.pricelist-mapping',
     storeId: 'store.pricelist-mapping',
-    model: 'MyApp.model.PriceListMapping',
+    model: 'Alegra.model.PriceListMapping',
     autoLoad: true
 });

@@ -1,4 +1,4 @@
-Ext.define('MyApp.view.alegra.ProductListPaging', {
+Ext.define('Alegra.view.alegra.ProductListPaging', {
     extend: 'Ext.grid.Panel',
     xtype: 'productListPaging',
 

@@ -1,4 +1,4 @@
-Ext.define('MyApp.view.alegra.TaxesGrid', {
+Ext.define('Alegra.view.alegra.TaxesGrid', {
     extend: 'Ext.grid.Panel',
     xtype: 'taxesgrid',
     id: 'taxesgrid',

@@ -1,6 +1,6 @@
 {
-    "name": "MyApp",
-    "namespace": "MyApp",
+    "name": "Alegra",
+    "namespace": "Alegra",
     "version": "1.0.0.0",
     "framework": "ext",
 
@@ -70,7 +70,7 @@
          * root namespace, change this to "". Doing so would change the mapping of
          * "MyApp.view.Foo" to "sass/src/MyApp/view/Foo.scss".
          */
-        "namespace": "MyApp",
+        "namespace": "Alegra",
 
         /**
          * Generated sass source settings
@@ -265,6 +265,9 @@
             "path": "${build.out.css.path}",
             "bundle": true,
             "exclude": ["fashion"]
+        },
+        {
+         "path": "resources/css/styles.css"
         }
     ],
 

@@ -1,4 +1,4 @@
-Ext.define('MyApp.view.alegra.PriceListGrid', {
+Ext.define('Alegra.view.alegra.PriceListGrid', {
     extend: 'Ext.grid.Panel',
     xtype: 'pricelistgrid',
     id: 'pricelistgrid',

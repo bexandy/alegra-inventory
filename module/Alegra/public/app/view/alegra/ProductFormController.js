@@ -1,10 +1,10 @@
-Ext.define('MyApp.view.alegra.ProductFormController', {
+Ext.define('Alegra.view.alegra.ProductFormController', {
     extend: 'Ext.app.ViewController',
 
     alias: 'controller.productform',
 
     requires: [
-        'MyApp.model.Product',
+        'Alegra.model.Product',
      ],
 
     onResetClick: function (sender, record) {
@@ -40,7 +40,7 @@ Ext.define('MyApp.view.alegra.ProductFormController', {
 
         var objInventory = { unit: values.inventoryUnit, unitCost: values.inventoryUnitCost, warehouses: arrWarehouses };
 
-        var product = Ext.create('MyApp.model.Product',{
+        var product = Ext.create('Alegra.model.Product',{
                             name: values.name,
                             description: values.description,
                             reference: values.reference,

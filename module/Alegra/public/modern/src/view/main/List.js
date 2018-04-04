@@ -1,12 +1,12 @@
 /**
  * This view is an example list of people.
  */
-Ext.define('MyApp.view.main.List', {
+Ext.define('Alegra.view.main.List', {
     extend: 'Ext.grid.Grid',
     xtype: 'mainlist',
 
     requires: [
-        'MyApp.store.Personnel'
+        'Alegra.store.Personnel'
     ],
 
     title: 'Personnel',

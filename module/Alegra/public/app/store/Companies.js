@@ -1,7 +1,7 @@
-Ext.define('MyApp.store.Companies', {
+Ext.define('Alegra.store.Companies', {
     extend: 'Ext.data.Store',
     alias: 'store.companies',
-    model: 'MyApp.model.Company',
+    model: 'Alegra.model.Company',
     proxy: {
         type: 'rest',
         url: '/api/company',

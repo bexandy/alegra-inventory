@@ -1,9 +1,9 @@
-Ext.define('MyApp.view.alegra.ProductViewModel', {
+Ext.define('Alegra.view.alegra.ProductViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.productviewmodel',
     stores: {
         ProductListPagingStore: {
-            model: 'MyApp.model.Product',
+            model: 'Alegra.model.Product',
             autoLoad: true,
             pageSize: 5,
             proxy:

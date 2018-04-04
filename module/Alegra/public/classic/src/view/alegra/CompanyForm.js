@@ -1,4 +1,4 @@
-Ext.define('MyApp.view.alegra.CompanyForm', {
+Ext.define('Alegra.view.alegra.CompanyForm', {
     extend: 'Ext.form.Panel',
 
     xtype: 'companyform',

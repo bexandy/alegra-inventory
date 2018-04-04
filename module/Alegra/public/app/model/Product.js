@@ -1,10 +1,10 @@
-Ext.define('MyApp.model.Product', {
+Ext.define('Alegra.model.Product', {
     extend: 'Ext.data.Model',
     requires:[
-        'MyApp.model.Price',
-        'MyApp.model.Inventory',
-        'MyApp.model.Category',
-        'MyApp.model.Warehouses',
+        'Alegra.model.Price',
+        'Alegra.model.Inventory',
+        'Alegra.model.Category',
+        'Alegra.model.Warehouses',
     ],
     fields: [
         { name: 'id', type: 'int', allowNull:true, useNull: true, defaultValue: null },
@@ -17,15 +17,15 @@ Ext.define('MyApp.model.Product', {
     ],
     hasMany: [
         {                                                              
-            model: 'MyApp.model.Price',                                                  
+            model: 'Alegra.model.Price',                                                  
             name: 'price',
             associationKey: 'price'                                
         }, {                                                              
-            model: 'MyApp.model.Inventory',                                                  
+            model: 'Alegra.model.Inventory',                                                  
             name: 'inventory',
             associationKey: 'inventory'                                              
         },{
-            model: 'MyApp.model.Category',                                                  
+            model: 'Alegra.model.Category',                                                  
             name: 'category',
             associationKey: 'category'
         }

@@ -5,16 +5,16 @@
  *
  * TODO - Replace the content of this view to suit the needs of your application.
  */
-Ext.define('MyApp.view.main.Main', {
+Ext.define('Alegra.view.main.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'app-main',
 
     requires: [
         'Ext.MessageBox',
 
-        'MyApp.view.main.MainController',
-        'MyApp.view.main.MainModel',
-        'MyApp.view.main.List'
+        'Alegra.view.main.MainController',
+        'Alegra.view.main.MainModel',
+        'Alegra.view.main.List'
     ],
 
     controller: 'main',

@@ -3,10 +3,10 @@
  * calls Ext.application(). This is the ideal place to handle application launch and
  * initialization details.
  */
-Ext.define('MyApp.Application', {
+Ext.define('Alegra.Application', {
     extend: 'Ext.app.Application',
 
-    name: 'MyApp',
+    name: 'Alegra',
 
     quickTips: false,
     platformConfig: {
@@ -21,7 +21,7 @@ Ext.define('MyApp.Application', {
 
     launch: function () {
         // TODO - Launch the application
-        Ext.create('MyApp.utility.VTypes').init();
+        Ext.create('Alegra.utility.VTypes').init();
     },
 
     onAppUpdate: function () {

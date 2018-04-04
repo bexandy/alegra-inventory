@@ -1,4 +1,4 @@
-Ext.define('MyApp.view.alegra.WarehousesGrid', {
+Ext.define('Alegra.view.alegra.WarehousesGrid', {
     extend: 'Ext.grid.Panel',
     xtype: 'warehousesgrid',
     id: 'warehousesgrid',

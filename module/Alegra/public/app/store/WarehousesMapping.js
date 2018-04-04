@@ -1,7 +1,7 @@
-Ext.define('MyApp.store.WarehousesMapping', {
+Ext.define('Alegra.store.WarehousesMapping', {
     extend: 'Ext.data.Store',
     alias: 'store.warehouses-mapping',
     storeId: 'store.warehouses-mapping',
-    model: 'MyApp.model.WarehousesMapping',
+    model: 'Alegra.model.WarehousesMapping',
     autoLoad: true
 });

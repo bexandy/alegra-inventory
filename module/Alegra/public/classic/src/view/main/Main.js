@@ -5,7 +5,7 @@
  *
  * TODO - Replace this content of this view to suite the needs of your application.
  */
-Ext.define('MyApp.view.main.Main', {
+Ext.define('Alegra.view.main.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'app-main',
     id: 'mainview',
@@ -14,15 +14,15 @@ Ext.define('MyApp.view.main.Main', {
         'Ext.plugin.Viewport',
         'Ext.window.MessageBox',
 
-        'MyApp.view.main.MainController',
-        'MyApp.view.main.MainModel',
+        'Alegra.view.main.MainController',
+        'Alegra.view.main.MainModel',
 
-        'MyApp.view.alegra.FormGrid',
-        'MyApp.view.alegra.ProductForm',
-        'MyApp.view.alegra.PriceListGrid',
-        'MyApp.view.alegra.TaxesGrid',
-        'MyApp.view.alegra.CategoriesGrid',
-        'MyApp.view.alegra.WarehousesGrid',
+        'Alegra.view.alegra.FormGrid',
+        'Alegra.view.alegra.ProductForm',
+        'Alegra.view.alegra.PriceListGrid',
+        'Alegra.view.alegra.TaxesGrid',
+        'Alegra.view.alegra.CategoriesGrid',
+        'Alegra.view.alegra.WarehousesGrid',
 
     ],
 
@@ -35,17 +35,25 @@ Ext.define('MyApp.view.main.Main', {
     titleRotation: 0,
     tabRotation: 0,
 
+    style: {
+        background: '#F5EEEE',
+    },
+
+
     header: {
         layout: {
-            align: 'stretchmax'
+           align: 'stretchmax'
         },
         title: {
             bind: {
-                text: '{name}'
+                text: '{logo}'
             },
-            flex: 0
+            flex: 0,
+            //html: '{logo}',
+            width: 150
         },
-        iconCls: 'fa-th-list'
+        
+        iconAlign: 'top',
     },
 
     tabBar: {
