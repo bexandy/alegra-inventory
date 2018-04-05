@@ -51,7 +51,17 @@ Ext.define('Alegra.view.alegra.ProductFormController', {
                         });
         //console.log(values);
         //Ext.Msg.alert('Data Values', values);
-        
+        Ext.MessageBox.show({
+                msg: 'Saving your data, please wait...',
+                progressText: 'Saving...',
+                width: 300,
+                wait: {
+                    interval: 200
+                },
+                //animateTarget: btn,
+                //maskClickAction: me.getMaskClickAction()
+            });
+
          product.save({
             waitMsg: 'Saving..',
             scope: this,
@@ -74,16 +84,20 @@ Ext.define('Alegra.view.alegra.ProductFormController', {
                 });
 
                 Ext.getCmp('gridpanel').getStore().load();
+                Ext.MessageBox.hide();
                 Ext.Msg.alert('Status', 'Saved successfully.');
             },
             failure: function (record, operation) {
+                Ext.MessageBox.hide();
                 Ext.Msg.alert('Save Failed', Ext.decode(operation.getError().response.responseText));
-                try {
+                try {                    
                     var resp = Ext.decode(operation.getError().response.responseText);
+                    Ext.MessageBox.hide();
                     Ext.Msg.alert('Status', resp.message);
 
                 }
                 catch (ex) {
+                    Ext.MessageBox.hide();
                     Ext.Msg.alert('Status', 'Not a valid data.' + ex.Message);
                 }
             }

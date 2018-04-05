@@ -79,8 +79,19 @@ Ext.define('Alegra.view.alegra.FormGridController', {
         var mask = new Ext.LoadMask({ msg: "Updating...", target: Ext.getCmp('formgrid-fieldset') });
         mask.show();
 
+        Ext.MessageBox.show({
+                msg: 'Updating your data, please wait...',
+                progressText: 'Updating...',
+                width: 300,
+                wait: {
+                    interval: 200
+                },
+                //animateTarget: btn,
+                //maskClickAction: me.getMaskClickAction()
+        });
+
          record.save({
-            waitMsg: 'Saving..',
+            waitMsg: 'Updating..',
             scope: this,
             success: function(record, operation) {
                 console.log(operation.response); // I can get server response in success      
@@ -93,16 +104,19 @@ Ext.define('Alegra.view.alegra.FormGridController', {
 
                 Ext.getCmp('gridpanel').getStore().load();
                 Ext.Msg.alert('Status', 'Saved successfully.');
+                Ext.MessageBox.hide();
                 mask.hide();
             },
             failure: function (record, operation) {
                 Ext.Msg.alert('Save Failed', Ext.decode(operation.getError().response.responseText));
                 try {
                     var resp = Ext.decode(operation.getError().response.responseText);
+                    Ext.MessageBox.hide();
                     Ext.Msg.alert('Status', resp.message);
 
                 }
                 catch (ex) {
+                    Ext.MessageBox.hide();
                     Ext.Msg.alert('Status', 'Not a valid data.' + ex.Message);
                 }
                 mask.hide();
@@ -133,11 +147,22 @@ Ext.define('Alegra.view.alegra.FormGridController', {
              
         //record.set(product);
 
-        var mask = new Ext.LoadMask({ msg: "Updating...", target: Ext.getCmp('formgrid-fieldset') });
+        var mask = new Ext.LoadMask({ msg: "Deleting...", target: Ext.getCmp('formgrid-fieldset') });
         mask.show();
 
+        Ext.MessageBox.show({
+                msg: 'Deleting your data, please wait...',
+                progressText: 'Deleting...',
+                width: 300,
+                wait: {
+                    interval: 200
+                },
+                //animateTarget: btn,
+                //maskClickAction: me.getMaskClickAction()
+        });
+
          record.erase({
-            waitMsg: 'Saving..',
+            waitMsg: 'Deleting..',
             scope: this,
             success: function(record, operation) {
                 console.log(operation.response); // I can get server response in success      
@@ -152,16 +177,19 @@ Ext.define('Alegra.view.alegra.FormGridController', {
                 //store.load();
                 Ext.getCmp('gridpanel').getStore().load();
                 Ext.Msg.alert('Status', 'Delete successfully.');
+                Ext.MessageBox.hide();
                 mask.hide();
             },
             failure: function (record, operation) {
                 Ext.Msg.alert('Delete Failed', Ext.decode(operation.getError().response.responseText));
                 try {
                     var resp = Ext.decode(operation.getError().response.responseText);
+                    Ext.MessageBox.hide();
                     Ext.Msg.alert('Status', resp.message);
 
                 }
                 catch (ex) {
+                    Ext.MessageBox.hide();
                     Ext.Msg.alert('Status', 'Not a valid data.' + ex.Message);
                 }
                 mask.hide();
