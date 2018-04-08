@@ -5,6 +5,7 @@ namespace Alegra\Controller;
 use Alegra\Filter\TaxFilter;
 use Alegra\Hydrator\TaxHydrator;
 use Alegra\Model\Tax;
+use Alegra\Plugin\CurrencyConverterPlugin;
 use Zend\Config\Config;
 use Zend\Config\Writer\PhpArray;
 use Zend\Filter\ToInt;
@@ -24,8 +25,8 @@ class HomeController extends AbstractRestfulController
     public function testAction()
     {
 
-        $prueba = '';
-        $prueba = $this->translator()->translate('Lista de Precios de Prueba');
+        $data = ['price' => 45000];
+        $prueba = $this->translator()->translate($data);
 
         $json = new JsonModel([
             'success' => true,

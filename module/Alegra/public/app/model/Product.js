@@ -1,6 +1,7 @@
 Ext.define('Alegra.model.Product', {
     extend: 'Ext.data.Model',
     requires:[
+        'Alegra.model.Tax',
         'Alegra.model.Price',
         'Alegra.model.Inventory',
         'Alegra.model.Category',
@@ -11,11 +12,15 @@ Ext.define('Alegra.model.Product', {
         { name: 'name', type: 'string', allowNull:true, useNull: true, defaultValue: null  },
         { name: 'description', type: 'string', allowNull:true, useNull: true, defaultValue: null  },
         { name: 'reference', type: 'string', allowNull:true, useNull: true, defaultValue: null },
-        { name: 'tax', type: 'auto', allowNull:true, useNull: true, defaultValue: null },
         { name: 'status', type: 'string', allowNull:true, useNull: true, defaultValue: null  },
         { name: 'productKey', type: 'string', allowNull:true, useNull: true, defaultValue: null }
     ],
     hasMany: [
+        {
+            model: 'Alegra.model.Tax',                                                  
+            name: 'tax',
+            associationKey: 'tax' 
+        },
         {                                                              
             model: 'Alegra.model.Price',                                                  
             name: 'price',

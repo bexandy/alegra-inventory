@@ -5,6 +5,7 @@ namespace Alegra;
 use Alegra\Factory\ApiCurrencyLayerFactory;
 use Alegra\Factory\CurrencyConverterPluginFactory;
 use Alegra\Factory\DatabaseTranslationCommandFactory;
+use Alegra\Factory\DbCurrencyCommandFactory;
 use Alegra\Factory\MyTranslatorServiceFactory;
 use Alegra\Factory\TranslatorPluginFactory;
 use Alegra\Plugin\CurrencyConverterPlugin;
@@ -13,6 +14,8 @@ use Alegra\Utility\CurrencyExchangeRateInterface;
 use Alegra\Utility\DatabaseTranslationCommand;
 use Alegra\Utility\DatabaseTranslationCommandInterface;
 use Alegra\Utility\DatabaseTranslationLoader;
+use Alegra\Utility\DbCurrencyCommand;
+use Alegra\Utility\DbCurrencyCommandInterface;
 use Alegra\Utility\MyTranslator;
 use Alegra\Utility\RealtimeTranslatorInterface;
 use Zend\I18n\Translator\Loader\RemoteLoaderInterface;
@@ -39,7 +42,8 @@ return [
             RemoteLoaderInterface::class => Utility\DatabaseTranslationLoader::class,
             RealtimeTranslatorInterface::class => Utility\ApiYandex::class,
             DatabaseTranslationCommandInterface::class => DatabaseTranslationCommand::class,
-            CurrencyExchangeRateInterface::class => ApiCurrencyLayer::class
+            CurrencyExchangeRateInterface::class => ApiCurrencyLayer::class,
+            DbCurrencyCommandInterface::class => DbCurrencyCommand::class
         ],
         'factories' => [
             Model\CategoryRepository::class => Factory\CategoryRepositoryFactory::class,
@@ -54,7 +58,8 @@ return [
             DatabaseTranslationCommand::class => DatabaseTranslationCommandFactory::class,
             MyTranslator::class => MyTranslatorServiceFactory::class,
             ApiCurrencyLayer::class => ApiCurrencyLayerFactory::class,
-            CurrencyConverterPlugin::class => CurrencyConverterPluginFactory::class
+            CurrencyConverterPlugin::class => CurrencyConverterPluginFactory::class,
+            DbCurrencyCommand::class => DbCurrencyCommandFactory::class
 
         ],
     ],

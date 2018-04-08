@@ -17,12 +17,13 @@ Ext.define('Alegra.view.main.MainModel', {
             company: {
                 model: 'Alegra.model.Company',
                 autoLoad: true,
-                session: true,
+                //session: true,
                 listeners: {
-                    load: function(store, records) {                        
+                    load: function(store, records) {     
+                     if (store.getAt(0)) {
                         vm.set('name', store.getAt(0).get('name'));
                         vm.set('logo', '<img src="'+store.getAt(0).get('logo')+'" width="150px" />');
-                        console.log(store.getAt(0).get('logo'));
+                     }                   
                     }
                 }
             }

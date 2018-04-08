@@ -28,6 +28,10 @@ Ext.define('Alegra.view.alegra.ProductFormController', {
 
         var values = productForm.getValues();
 
+        var objTax = { id: values.taxId };
+        var arrTax = [];
+        arrTax.push(objTax);
+
         var objCategory = { id: values.categoryId };
 
         var objPrice = { id: values.priceId, price: values.priceValue };
@@ -44,7 +48,7 @@ Ext.define('Alegra.view.alegra.ProductFormController', {
                             name: values.name,
                             description: values.description,
                             reference: values.reference,
-                            tax: values.tax,
+                            tax: arrTax,
                             price: arrPrice,
                             category: objCategory,
                             inventory: objInventory,

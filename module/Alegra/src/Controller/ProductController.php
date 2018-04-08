@@ -41,8 +41,6 @@ class ProductController extends AbstractRestfulController
 
     public function getList()
     {
-        $prueba = '';
-        $prueba = $this->translator()->translate('Lista de Precios de Prueba');
         $products = $this->productRepository->findAllProducts();
 
         if ($products instanceof HydratingResultSet)
@@ -67,7 +65,7 @@ class ProductController extends AbstractRestfulController
             $this->getResponse()->setStatusCode(200);
             return $json;
         } else {
-            $message = $this->translator()->translate($products);
+            $message = $this->translator()->translate($products, 'default','en_US');
             $this->getResponse()->setStatusCode(404);
             return new JsonModel([
                 'success' => false,
@@ -158,7 +156,9 @@ class ProductController extends AbstractRestfulController
     public function delete($id)
     {
         $hydrator = new  ProductHydrator();
-        $product = $hydrator->hydrate( ['id' => $id], new Product());
+        //$product = $hydrator->hydrate( ['id' => $id], new Product());
+        $product = new Product();
+        $product->setId($id);
 
         $delete = $this->productCommand->deleteProduct($product);
 
@@ -191,7 +191,7 @@ class ProductController extends AbstractRestfulController
         $hydrator = new  ProductHydrator();
         $product = $hydrator->hydrate( $data, new Product());
 
-        $product->setId($resource);
+        $product->setId(intval($resource));
 
         $enviar = $this->productCommand->updateProduct($product);
 
@@ -212,10 +212,11 @@ class ProductController extends AbstractRestfulController
             ]);
         }
         else {
+            $message = $this->translator()->translate($enviar, 'default','en_US');
             $this->getResponse()->setStatusCode(404);
             return new JsonModel([
                 'success' => false,
-                'message' => $enviar
+                'message' => $message
             ]);
         }
 

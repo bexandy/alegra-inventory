@@ -15,20 +15,58 @@ class ApiCurrencyLayer implements CurrencyExchangeRateInterface
     protected $endpoint;
     protected $accessKey;
     protected $currencies;
+    protected $dbCurrencyCommand;
+    protected $interval;
 
     /**
      * ApiCurrencyLayer constructor.
      * @param $config
      */
-    public function __construct($config)
+    public function __construct($config, DbCurrencyCommandInterface $dbCurrencyCommand)
     {
         $this->config = $config;
         $this->endpoint = $config['endpoint'];
         $this->accessKey = $config['access_key'];
         $this->currencies = $config['currencies'];
+        $this->dbCurrencyCommand = $dbCurrencyCommand;
+        $this->interval = $config['interval'];
     }
 
     public function getExchangeRate()
+    {
+        $exchangerate = $this->dbCurrencyCommand->getExchangeRate();
+
+        $update = $exchangerate['update_date'];
+
+        $updateTime = new \DateTime($update);
+
+        $now = new \DateTime("now");
+
+        $diff = $updateTime->diff($now);
+
+        $time = $diff->format('%H');
+
+        $interval = $this->interval;
+
+        if ($time > $interval) {
+            $this->dbCurrencyCommand->updateExchangeRate($this->ApiExchangeRate());
+            $exchangerate = $this->dbCurrencyCommand->getExchangeRate();
+        }
+
+        $rate = $exchangerate['rate'];
+
+        return $rate;
+
+    }
+
+    public function getDbRate()
+    {
+        $rate = '2700';
+
+        return $rate;
+    }
+
+    public function ApiExchangeRate()
     {
         // TODO: Implement getExchangeRate() method.
         // set API Endpoint, access key, required parameters
@@ -54,7 +92,6 @@ class ApiCurrencyLayer implements CurrencyExchangeRateInterface
         } catch (\Exception $e) {
             return $this->config['rate'];
         }
-
     }
 
 

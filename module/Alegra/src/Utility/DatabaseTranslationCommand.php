@@ -58,4 +58,6 @@ class DatabaseTranslationCommand implements DatabaseTranslationCommandInterface
         // TODO: Implement getLocaleId() method.
     }
 
+
+
 }

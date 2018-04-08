@@ -13,9 +13,11 @@ Ext.define('Alegra.view.alegra.FormGridController', {
         //var dato = this.getView().getSelectionModel().getSelection();
         var rec = records[0];
         if (rec) {
-          this.getView().getForm().loadRecord(rec);
-          
+          this.getView().getForm().reset();
+          this.getView().getForm().loadRecord(rec);          
           Ext.getCmp('formgrid-fieldset').setDisabled(false);
+
+
 /*
           var items = this.getView().getForm().getFields().items,
               i = 0,
@@ -49,6 +51,10 @@ Ext.define('Alegra.view.alegra.FormGridController', {
        
         var values = productForm.getValues();
 
+        var objTax = { id: values.taxId };
+        var arrTax = [];
+        arrTax.push(objTax);
+
         var objCategory = { id: values.categoryId };
 
         var objPrice = { id: values.priceId, price: values.priceValue };
@@ -68,7 +74,7 @@ Ext.define('Alegra.view.alegra.FormGridController', {
             name: values.name,
             description: values.description,
             reference: values.reference,
-            tax: values.tax,
+            tax: arrTax,
             price: arrPrice,
             category: objCategory,
             inventory: objInventory,
@@ -157,6 +163,7 @@ Ext.define('Alegra.view.alegra.FormGridController', {
                 wait: {
                     interval: 200
                 },
+
                 //animateTarget: btn,
                 //maskClickAction: me.getMaskClickAction()
         });

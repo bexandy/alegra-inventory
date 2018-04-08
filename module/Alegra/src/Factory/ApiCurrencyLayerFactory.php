@@ -10,6 +10,7 @@ namespace Alegra\Factory;
 
 
 use Alegra\Utility\ApiCurrencyLayer;
+use Alegra\Utility\DbCurrencyCommandInterface;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
@@ -21,8 +22,10 @@ class ApiCurrencyLayerFactory implements FactoryInterface
     {
         // TODO: Implement __invoke() method.
         $this->config = $container->get('configuration');
+        $dbCurrencyCommand = $container->get(DbCurrencyCommandInterface::class);
         return new ApiCurrencyLayer(
-            $this->config['translatable']['convert_currency']
+            $this->config['translatable']['convert_currency'],
+            $dbCurrencyCommand
         );
     }
 

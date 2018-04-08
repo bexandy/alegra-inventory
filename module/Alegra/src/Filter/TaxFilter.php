@@ -36,7 +36,7 @@ class TaxFilter
         $inputFilter = $factory->createInputFilter([
             'id' => [
                 'name' => 'id',
-                'required' => true,
+                'required' => false,
                 'filters' => [
                     [ 'name' => ToInt::class],
                     [ 'name' => MyFilter::class]
@@ -113,7 +113,7 @@ class TaxFilter
             ],
             'status' => [
                 'name' => 'status',
-                'required' => true,
+                'required' => false,
                 'filters' => [
                     [ 'name' => StringTrim::class],
                     [ 'name' => StripTags::class],

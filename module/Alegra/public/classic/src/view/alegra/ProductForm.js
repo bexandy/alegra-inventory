@@ -134,7 +134,7 @@ Ext.define('Alegra.view.alegra.ProductForm', {
                         valueField: 'id',
                         label: 'Tax Name',
                         labelWrap: true,
-                        name: 'tax',
+                        name: 'taxId',
                         fieldLabel: 'Tax',
                         queryMode: 'local',
                         typeAhead: true,
