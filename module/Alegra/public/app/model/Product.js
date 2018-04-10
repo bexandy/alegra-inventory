@@ -1,27 +1,25 @@
 Ext.define('Alegra.model.Product', {
     extend: 'Ext.data.Model',
     requires:[
-        'Alegra.model.Tax',
         'Alegra.model.Price',
         'Alegra.model.Inventory',
         'Alegra.model.Category',
-        'Alegra.model.Warehouses',
+        'Alegra.model.Tax',
     ],
     fields: [
-        { name: 'id', type: 'int', allowNull:true, useNull: true, defaultValue: null },
-        { name: 'name', type: 'string', allowNull:true, useNull: true, defaultValue: null  },
-        { name: 'description', type: 'string', allowNull:true, useNull: true, defaultValue: null  },
-        { name: 'reference', type: 'string', allowNull:true, useNull: true, defaultValue: null },
-        { name: 'status', type: 'string', allowNull:true, useNull: true, defaultValue: null  },
-        { name: 'productKey', type: 'string', allowNull:true, useNull: true, defaultValue: null }
+        { name: 'id', type: 'int' },
+        { name: 'name', type: 'string' },
+        { name: 'description', type: 'string' },
+        { name: 'reference', type: 'string'},
+        { name: 'status', type: 'string' },
+        { name: 'productKey', type: 'string' }
     ],
     hasMany: [
         {
             model: 'Alegra.model.Tax',                                                  
             name: 'tax',
             associationKey: 'tax' 
-        },
-        {                                                              
+        }, {                                                              
             model: 'Alegra.model.Price',                                                  
             name: 'price',
             associationKey: 'price'                                
@@ -29,7 +27,7 @@ Ext.define('Alegra.model.Product', {
             model: 'Alegra.model.Inventory',                                                  
             name: 'inventory',
             associationKey: 'inventory'                                              
-        },{
+        }, {
             model: 'Alegra.model.Category',                                                  
             name: 'category',
             associationKey: 'category'

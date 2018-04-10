@@ -23,6 +23,7 @@ Ext.define('Alegra.view.main.Main', {
         'Alegra.view.alegra.TaxesGrid',
         'Alegra.view.alegra.CategoriesGrid',
         'Alegra.view.alegra.WarehousesGrid',
+        'Alegra.view.alegra.ProductBx'
 
     ],
 
@@ -30,6 +31,8 @@ Ext.define('Alegra.view.main.Main', {
     viewModel: 'main',
 
     ui: 'navigation',
+
+    session: true,
 
     tabBarHeaderPosition: 1,
     titleRotation: 0,
@@ -60,7 +63,7 @@ Ext.define('Alegra.view.main.Main', {
         flex: 1,
         layout: {
             align: 'stretch',
-            overflowHandler: 'none'
+            overflowHandler: 'scroller'
         }
     },
 
@@ -131,6 +134,12 @@ Ext.define('Alegra.view.main.Main', {
         iconCls: 'fa-home',
         items: [{
             xtype: 'warehousesgrid'
+        }]
+    }, {
+        title: 'Products',
+        iconCls: 'fa-times',
+        items: [{
+            xtype: 'alegra-product-bx'
         }]
     }]
 });

@@ -1,25 +1,21 @@
 Ext.define('Alegra.model.Inventory', {
     extend: 'Ext.data.Model',
     requires:[
-        'Alegra.model.Warehouses',
+        'Alegra.model.Warehouse',
     ],
     fields: [
-    	{ name: 'initialQuantity', type: 'int', allowNull:true, useNull: true, defaultValue: null  },
-    	{ name: 'unit', type: 'string', allowNull:true, useNull: true, defaultValue: null  },
-    	{ name: 'unitCost', type: 'int', allowNull:true, useNull: true, defaultValue: null  },
-    	{ name: 'availableQuantity', type: 'int', allowNull:true, useNull: true, defaultValue: null  }
+        { name: 'initialQuantity', type: 'int' },
+        { name: 'unit', type: 'string'  },
+        { name: 'unitCost', type: 'int' },
+        { name: 'availableQuantity', type: 'int'  }
     ],
     hasMany: [
         {                                                 
-            model: 'Alegra.model.Warehouses',                                                  
+            model: 'Alegra.model.Warehouse',                                                  
             name: 'warehouses',
             associationKey: 'warehouses'                                             
         }
     ],
-    writer: {
-            type: 'json',
-            writeRecordId: false,
-            writeAllFields: false
-    },
+
     belongsTo: 'Alegra.model.Product'
 });
