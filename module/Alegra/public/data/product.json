@@ -1,0 +1,421 @@
+{
+"success": true,
+"data": [
+	{
+		"id": 4,
+		"name": "app",
+		"description": "hello",
+		"reference": "mi-app",
+		"price": [
+			{
+				"idPriceList": 1,
+				"name": "General",
+				"type": [
+					"amount"
+				],
+				"price": "180.06"
+			}
+		],
+		"tax": [
+			{
+				"id": 1,
+				"name": "VAT",
+				"percentage": "21.00",
+				"description": "Value Added Tax",
+				"status": "active"
+			}
+		],
+		"category": {
+			"id": 5048,
+			"name": "Sales"
+		},
+		"status": "active"
+	},
+	{
+		"id": 6,
+		"name": "Bobby",
+		"description": "The Golden Retriever",
+		"reference": "the-dog",
+		"price": [
+			{
+				"idPriceList": 1,
+				"name": "General",
+				"type": [
+					"amount"
+				],
+				"price": "72.02"
+			}
+		],
+		"category": {
+			"id": 5048,
+			"name": "Sales"
+		},
+		"inventory": {
+			"unit": "unit",
+			"availableQuantity": 15,
+			"unitCost": "72.02",
+			"initialQuantity": 15,
+			"warehouses": [
+				{
+					"id": 1,
+					"name": "Main",
+					"isDefault": true,
+					"initialQuantity": 15,
+					"availableQuantity": 15,
+					"status": "active"
+				}
+			]
+		},
+		"status": "active"
+	},
+	{
+		"id": 15,
+		"name": "Purple Shirt",
+		"description": "This is a beautiful shirt for man of color purple",
+		"reference": "purple-shirt",
+		"price": [
+			{
+				"idPriceList": 1,
+				"name": "General",
+				"type": [
+					"amount"
+				],
+				"price": "45.48"
+			}
+		],
+		"category": {
+			"id": 5048,
+			"name": "Sales"
+		},
+		"inventory": {
+			"unit": "unit",
+			"availableQuantity": 100,
+			"unitCost": "45.48",
+			"initialQuantity": 100,
+			"warehouses": [
+				{
+					"id": 1,
+					"name": "Main",
+					"isDefault": true,
+					"initialQuantity": 100,
+					"availableQuantity": 100,
+					"status": "active"
+				}
+			]
+		},
+		"status": "active"
+	},
+	{
+		"id": 16,
+		"name": "Jacket Black",
+		"description": "This is a black jacket",
+		"reference": "black-jacket",
+		"price": [
+			{
+				"idPriceList": 1,
+				"name": "General",
+				"type": [
+					"amount"
+				],
+				"price": "80.85"
+			}
+		],
+		"category": {
+			"id": 5048,
+			"name": "Sales"
+		},
+		"inventory": {
+			"unit": "unit",
+			"availableQuantity": 100,
+			"unitCost": "80.85",
+			"initialQuantity": 100,
+			"warehouses": [
+				{
+					"id": 1,
+					"name": "Main",
+					"isDefault": true,
+					"initialQuantity": 100,
+					"availableQuantity": 100,
+					"status": "active"
+				}
+			]
+		},
+		"status": "active"
+	},
+	{
+		"id": 2,
+		"name": "Pocket Computer",
+		"description": "Is a kind of personal digital assistant that runs the Windows Mobile OS",
+		"reference": "mi-computadora-bolsillo",
+		"price": [
+			{
+				"idPriceList": 1,
+				"name": "General",
+				"type": [
+					"amount"
+				],
+				"price": "7.20"
+			}
+		],
+		"category": {
+			"id": 5048,
+			"name": "Sales"
+		},
+		"inventory": {
+			"unit": "unit",
+			"availableQuantity": 15,
+			"unitCost": "7.20",
+			"initialQuantity": 15,
+			"warehouses": [
+				{
+					"id": 1,
+					"name": "Main",
+					"isDefault": true,
+					"initialQuantity": 15,
+					"availableQuantity": 15,
+					"status": "active"
+				}
+			]
+		},
+		"status": "active"
+	},
+	{
+		"id": 13,
+		"name": [
+			"Computer Chair"
+		],
+		"description": [
+			"The chair for the computer"
+		],
+		"reference": "computer-chair",
+		"price": [
+			{
+			"idPriceList": 1,
+			"name": "General",
+			"type": [
+				"amount"
+			],
+			"price": "50.13"
+			}
+		],
+		"category": {
+			"id": 5048,
+			"name": "Sales"
+		},
+		"status": "active"
+	},
+	{
+		"id": 12,
+		"name": "hello",
+		"reference": "hello-product",
+		"price": [
+			{
+			"idPriceList": 1,
+			"name": "General",
+			"type": [
+				"amount"
+			],
+			"price": "20.05"
+			}
+		],
+		"category": {
+			"id": 5048,
+			"name": "Sales"
+		},
+		"inventory": {
+			"unit": "unit",
+			"availableQuantity": 5,
+			"unitCost": "20.05",
+			"initialQuantity": 5,
+			"warehouses": [
+				{
+					"id": 1,
+					"name": "Main",
+					"isDefault": true,
+					"initialQuantity": 5,
+					"availableQuantity": 5,
+					"status": "active"
+				}
+			]
+		},
+		"status": "active"
+	},
+	{
+		"id": 1,
+		"name": "My Product",
+		"description": [
+			"This is my test product"
+		],
+		"reference": "mi-producto-bex001",
+		"price": [
+			{
+				"idPriceList": 1,
+				"name": "General",
+				"type": [
+					"amount"
+				],
+				"price": "35.09"
+			}
+		],
+		"category": {
+			"id": 5048,
+			"name": "Sales"
+		},
+		"inventory": {
+			"unit": "unit",
+			"availableQuantity": 5,
+			"initialQuantity": 5,
+			"warehouses": [
+				{
+					"id": 1,
+					"name": "Main",
+					"isDefault": true,
+					"initialQuantity": 5,
+					"availableQuantity": 5,
+					"status": "active"
+				}
+			]
+		},
+		"status": "active"
+	},
+	{
+		"id": 5,
+		"name": [
+			"Misu"
+		],
+		"description": "This is a Black Cat",
+		"reference": "el-gato-negro",
+		"price": [
+			{
+				"idPriceList": 1,
+				"name": "General",
+				"type": [
+					"amount"
+				],
+				"price": "0.05"
+			}
+		],
+		"category": {
+			"id": 5048,
+			"name": "Sales"
+		},
+		"inventory": {
+			"unit": "unit",
+			"availableQuantity": 100,
+			"unitCost": "0.05",
+			"initialQuantity": 100,
+			"warehouses": [
+				{
+					"id": 1,
+					"name": "Main",
+					"isDefault": true,
+					"initialQuantity": 100,
+					"availableQuantity": 100,
+					"status": "active"
+				}
+			]
+		},
+		"status": "active"
+	},
+	{
+		"id": 3,
+		"name": "postman",
+		"price": [
+			{
+				"idPriceList": 1,
+				"name": "General",
+				"type": [
+					"amount"
+				],
+				"price": "0.54"
+			}
+		],
+		"category": {
+			"id": 5048,
+			"name": "Sales"
+		},
+		"status": "active"
+	},
+	{
+		"id": 8,
+		"name": [
+			"radio"
+		],
+		"description": [
+			"Radio RKE World"
+		],
+		"price": [
+			{
+				"idPriceList": 1,
+				"name": "General",
+				"type": [
+					"amount"
+				],
+				"price": "0.03"
+			}
+		],
+		"category": {
+			"id": 5048,
+			"name": "Sales"
+		},
+		"status": "active"
+	},
+	{
+		"id": 11,
+		"name": "tv",
+		"reference": "televisor-principal",
+		"price": [
+			{
+				"idPriceList": 1,
+				"name": "General",
+				"type": [
+					"amount"
+				],
+				"price": "0.11"
+			}
+		],
+		"category": {
+			"id": 5048,
+			"name": "Sales"
+		},
+		"status": "active"
+	},
+	{
+		"id": 14,
+		"name": "A real object",
+		"description": "This is a real object in my world",
+		"reference": "my-real-object",
+		"price": [
+			{
+				"idPriceList": 1,
+				"name": "General",
+				"type": [
+					"amount"
+				],
+				"price": "150.38"
+			}
+		],
+		"category": {
+			"id": 5048,
+			"name": "Sales"
+		},
+		"inventory": {
+			"unit": "unit",
+			"availableQuantity": 10,
+			"unitCost": "150.38",
+			"initialQuantity": 10,
+			"warehouses": [
+				{
+					"id": 1,
+					"name": "Main",
+					"isDefault": true,
+					"initialQuantity": 10,
+					"availableQuantity": 10,
+					"status": "active"
+				}
+			]
+		},
+		"status": "active"
+	}
+]
+}

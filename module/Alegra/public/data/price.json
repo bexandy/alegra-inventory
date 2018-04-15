@@ -1,0 +1,23 @@
+{
+"success": true,
+"data": [
+{
+"idPriceList": 1,
+"name": "General",
+"status": "active",
+"type": [
+"amount"
+],
+"price": ""
+},
+{
+"idPriceList": 2,
+"name": "Test Price List",
+"status": "active",
+"type": [
+"amount"
+],
+"price": ""
+}
+]
+}

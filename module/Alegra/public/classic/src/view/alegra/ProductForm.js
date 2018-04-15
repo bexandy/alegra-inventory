@@ -1,284 +1,335 @@
-Ext.define('Alegra.view.alegra.ProductForm', {
-    extend: 'Ext.form.Panel',
+Ext.define('Tutorial.view.alegra.ProductForm', {
+    extend: 'Ext.window.Window',
+    xtype: 'alegra-product-form',
+
     requires: [
         'Ext.grid.*',
         'Ext.form.*',
         'Ext.layout.container.Column',
-        'Alegra.model.ProductMapping',
-        'Alegra.store.PriceListMapping',
-        'Alegra.store.TaxesMapping',
-        'Alegra.store.CategoriesMapping',
-        'Alegra.store.WarehousesMapping',
-        'Alegra.store.Units',
-
-        'Alegra.view.alegra.ProductFormController',
-        'Alegra.utility.VTypes'
-
+        'Tutorial.store.Category',
+        'Tutorial.store.Tax',
+        'Tutorial.store.Price',
+        'Tutorial.store.Warehouse',
+        'Tutorial.store.Units',
     ],
 
-    xtype: 'productform',    
-    id: 'productform',
 
-    controller: 'productform',
+    bind: {
+        title: '{title}'
+    },
 
-    frame: true,
-    title: 'New Product',
-    bodyPadding: 5,
+    autoScroll: true,
+    layout: 'fit',
+    modal: true,
+    width: 800,
+    height: 550,
+    closable: true,
+    centered: true,
+    session: true,
 
-    initComponent: function () {
-        Ext.apply(this,
-        {
-            buttonAlign: 'center',
-            fieldDefaults: {
-                labelAlign: 'left',
-                labelWidth: 90,
-                anchor: '100%',
-                msgTarget: 'side'
+    items: {
+        xtype: 'form',
+        reference: 'form',
+        autoScroll: true,
+        bodyPadding: 10,
+        border: false,
+        // use the Model's validations for displaying form errors
+        modelValidation: true,
+        layout: {
+            type: 'vbox',
+            align: 'stretch'
+        },
+        fieldDefaults: {
+            labelAlign: 'right',
+            labelWidth: 90,
+            msgTarget: Ext.supports.Touch ? 'side' : 'qtip',
+            fieldStyle: 'font-weight: bold;',
+        },
+        items: [{
+            xtype: 'fieldset',
+            title: 'General Information',
+            defaultType: 'textfield',
+            layout: 'anchor',
+            defaults: {
+                anchor: '100%'
             },
-            items: [
-                    // Field Container Superior Datos Generales
-            {
+            items: [{
                 xtype: 'fieldcontainer',
+                fieldLabel: 'Product',
+
+                layout: 'hbox',
+                combineErrors: true,
+                defaultType: 'textfield',
+                defaults: {
+                    hideLabel: 'true'
+                },
+                items : [{
+                    xtype: 'textfield',
+                    fieldLabel: 'Name',
+                    reference: 'name',
+                    name: 'name',
+                    msgTarget: 'side',
+                    bind: '{theProduct.name}',
+                    margin: '0 0 10 5',
+                    flex: 2,
+                    emptyText: 'Name',
+                    allowBlank: false
+                }, {
+                    xtype: 'textfield',
+                    fieldLabel: 'Reference',
+                    reference: 'reference',
+                    name: 'reference',
+                    msgTarget: 'side',
+                    bind: '{theProduct.reference}',
+                    flex: 3,
+                    margin: '0 0 0 6',
+                    emptyText: 'Reference',
+                    allowBlank: true
+                }]
+            }, {
+                xtype: 'container',
                 layout: 'hbox',
                 defaultType: 'textfield',
-                width: '100%',
-                fieldDefaults:
-                {
-                    labelAlign: 'top',
-                    labelStyle: 'font-weight:bold'
-                },
-                items: [
-                        // FieldContainer Izquierdo 50%
-                {
-                    xtype: 'fieldcontainer',
-                    layout: 'vbox',
-                    defaultType: 'textfield',
-                    width: '50%',
-                    fieldDefaults:
-                    {
-                        labelAlign: 'left',
-                        labelStyle: 'font-weight:bold',
-                        flex: 1,
-                    },
-                    items: [
-                    {
-                        fieldLabel: 'Name',
-                        name: 'name',
-                        required: true,
-                        allowBlank: false,
-                        maxLength: 150
-                    },
-                    {
-                        fieldLabel: 'Reference',
-                        name: 'reference',
-                        maxLength: 45
-                    },
-                        // FieldSet De PriceList
-                    {                                   
-                        xtype:'fieldset',
-                        title: 'PriceList',
-                        //layout: 'hbox',
-                        collapsible: false,
-                        autoHeight:true,
-                        //defaults: {width: 210},
-                        defaultType: 'textfield',
-                        items: [{
-                            xtype: 'fieldcontainer',
-                            layout: 'vbox',
-                            defaultType: 'textfield',
-                            //width: '50%',
-                            items: [{
-                                xtype: 'combobox',                                        
-                                store: Ext.create('Alegra.store.PriceListMapping'),
-                                displayField: 'name',
-                                valueField: 'idPriceList',
-                                label: 'Name',
-                                labelWrap: true,
-                                name: 'priceId',
-                                fieldLabel: 'Name',
-                                queryMode: 'local',
-                                typeAhead: true,
-                                allowBlank: false
-                            },{
-                                fieldLabel: 'Price ($)',
-                                name: 'priceValue',
-                                required: true,
-                                allowBlank: false
-                            }],
-                        }],                        
-                    }]
-                },
-                        // FieldContainer Derecho 50 %
-                {
-                    xtype: 'fieldcontainer',
-                    layout: 'vbox',
-                    defaultType: 'textfield',
-                    width: '50%',
-                    fieldDefaults:
-                    {
-                        labelAlign: 'left',
-                        labelStyle: 'font-weight:bold',
-                        flex: 1,
-                    },
-                    items: [
-                    {
-                        fieldLabel: 'Description',
-                        xtype: 'textarea',
-                        name: 'description',
-                        maxLength: 150
-                    },
-                    {
-                        xtype: 'combobox',                                        
-                        store: Ext.create('Alegra.store.TaxesMapping'),
+                margin: '0 0 5 0',
+                bind: '{category}',
+                items: [{
+                        xtype: 'combobox',
+                        reference: 'categoryCombo',
+                        name: 'category',
+                        //reference: 'category',
+                        bind: {
+                            value: '{categoryName}', 
+                        },                               
+                        store: {
+                            type: 'categorylist',
+                            autoLoad: true
+                        },
                         displayField: 'name',
                         valueField: 'id',
-                        label: 'Tax Name',
-                        labelWrap: true,
-                        name: 'taxId',
-                        fieldLabel: 'Tax',
-                        queryMode: 'local',
-                        typeAhead: true,
-                        //forceSelection: true
-                    },
-                    {
-                        xtype: 'combobox',                                        
-                        store: Ext.create('Alegra.store.CategoriesMapping'),
-                        displayField: 'name',
-                        valueField: 'id',
+                        publishes: 'id',
                         label: 'Category Name',
                         labelWrap: true,
-                        name: 'categoryId',
                         fieldLabel: 'Category',
                         queryMode: 'local',
                         typeAhead: true,
-                        //forceSelection: true
-                    }]
+                        allowBlank: false,
+                        flex: 3
+                }, {
+                        xtype: 'combobox',
+                        reference: 'taxCombo',
+                        name: 'tax',    
+                        bind: '{taxName}',                                     
+                        store: {
+                            type: 'taxlist',
+                            autoLoad: true
+                        },
+                        displayField: 'name',
+                        valueField: 'name',
+                        label: 'Tax Name',
+                        labelWrap: true,
+                        fieldLabel: 'Tax',
+                        queryMode: 'local',
+                        typeAhead: true,
+                        flex: 3
                 }]
-            },
-                    // Field Container Inferior Inventario
-            {
-                xtype: 'fieldcontainer',
+            }, {
+                xtype: 'container',
                 layout: 'hbox',
                 defaultType: 'textfield',
-                width: '100%',
-                title: 'Inventory Details',
-                fieldDefaults:
-                {
-                    labelAlign: 'top',
-                    labelStyle: 'font-weight:bold',
-                    flex: 1,
-                },
-                items: [
-                {
-                    xtype:'fieldset',
-                    title: 'Inventory',
-                    layout: 'hbox',
-                    collapsible: false,
-                    autoHeight:true,
-                    defaults: {
-                        margin: '0 0 10 5',
-                    },
-                    //defaultType: 'textfield',
-                    items: [
-                        // Field Container Inventory Details
-                    {
-                        xtype: 'fieldcontainer',
-                        layout: 'hbox',
-                        defaultType: 'textfield',
-                        width: '50%',
-                        defaults: {
-                            margin: '0 0 10 5',
+                margin: '0 0 5 0',
+
+                items: [{
+                        fieldLabel: 'Description',
+                        name: 'description',
+                        xtype: 'textarea',
+                        bind: '{theProduct.description}',
+                        reference: 'description',
+                        flex: 12,
+                }]
+            }]
+        }, {
+            xtype: 'fieldset',
+            title: 'Price List',
+            defaultType: 'textfield',
+            layout: 'anchor',
+            collapsible: true,
+            defaults: {
+                anchor: '100%',
+            },
+            items: [{
+                xtype: 'grid',
+                name: 'price',
+                autoLoad: true,
+                plugins: 'grideditable',
+                flex: 6,
+                reference: 'prices',
+                margin: '10 0 0 0',
+                bind: '{theProduct.price}',
+                tbar: [{
+                        text: 'Add PriceList',
+                        handler: 'onAddPriceClick'
+                }],
+                actions: {
+                        remove: {
+                            iconCls: 'cell-editing-delete-row',
+                            handler: 'onRemovePriceClick'
                         },
-                        title: 'Inventory Details',
-                        items: [
-                        {
-                            //margin: '0 0 5 5',
-                            xtype: 'combobox',                                        
-                            store: Ext.create('Alegra.store.Units'),
+                },
+                columns: [{
+                        text: 'Name',
+                        dataIndex: 'name',
+                        flex: 1,
+                        editor: {
+                            xtype: 'combobox',
+                            store: {
+                                type: 'pricelist',
+                                autoLoad: true
+                            },
                             displayField: 'name',
                             valueField: 'name',
-                            label: 'Unit',
+                            label: 'Name',
                             labelWrap: true,
-                            name: 'inventoryUnit',
-                            fieldLabel: 'Unit',
+                            name: 'name',
+                            fieldLabel: 'Name',
                             queryMode: 'local',
                             typeAhead: true,
-                            id: 'unit',
-                            vtype: 'inventoryMatch'
-                        },{
-                            fieldLabel: 'Unit Cost ($)',
-                            name: 'inventoryUnitCost',
-                            id: 'unitCost',
-                            vtype: 'inventoryMatch'
-                            
-                        }],
-                    },
-                        // Field Container Warehouses
-                    {
-                        xtype: 'fieldcontainer',
-                        layout: 'hbox',
-                        defaultType: 'textfield',
-                        width: '50%',
-                        defaults: {
-                            margin: '0 0 10 5',
-                        },
-                        title: 'Warehouses',
-                        items: [
-                        {
-                            //margin: '0 0 5 5',
-                            xtype: 'combobox',                                        
-                            store: Ext.create('Alegra.store.WarehousesMapping'),
-                            displayField: 'name',
-                            valueField: 'id',
-                            label: 'Warehouse',
-                            labelWrap: true,
-                            name: 'warehousesId',
-                            fieldLabel: 'Warehouse',
-                            queryMode: 'local',
-                            typeAhead: true,
-                            id: 'warehouse',
-                            vtype: 'inventoryMatch'
-                            //forceSelection: true   
-                        }, {
-                            fieldLabel: 'Initial Quantity',
-                            name: 'warehousesInitialQuantity',
-                            id: 'initialQuantity',
-                            vtype: 'inventoryMatch'
-                            //margin: '0 0 5 5',
-                        }],
-                    }],
+                            allowBlank: false
+                        }
+                }, {
+                        text: 'Price ($ USD)',
+                        dataIndex: 'price',
+                        flex: 1,
+                        editable: true,
+                        format: '$0,0',
+                        dirtyText: null,
+                        editor: {
+                            xtype: 'numberfield',
+                            allowBlank: false,
+                            minValue: 1,
+                            maxValue: 150000,
+                        }
+                }, {
+                        menuDisabled: true,
+                        sortable: false,
+                        xtype: 'actioncolumn',
+                        width: 50,
+                        items: ['@remove']
                 }],
-            }],
-            buttons: [{
-                text: 'Create',
-                itemId: 'btnCreate',
-                formBind: true,
-                handler: 'onCreateClick'
-            },
-            {
-                text: 'Reset',
-                itemId: 'btnReset',
-                handler: 'onResetClick'
-            },
-            {
-                text: 'Clear',
-                itemId: 'btnClear',
-                handler: 'onClearClick'
+                plugins: [{
+                        ptype: 'rowediting',
+                        clicksToMoveEditor: 1,
+                        autoCancel: false
+                }]
             }]
-        });
+        }, {
+            xtype: 'fieldset',
+            title: 'Inventory',
+            defaultType: 'textfield',
+            layout: 'anchor',
+            collapsible: true,
+            defaults: {
+                anchor: '100%'
+            },
+            items: [{
+                xtype: 'container',
+                name: 'inventory',
+                layout: 'hbox',
+                defaultType: 'textfield',
+                margin: '0 0 5 0',
 
-        
-
-        this.callParent(arguments);
-
+                items: [{
+                        fieldLabel: 'Unit Cost ($ USD)',
+                        bind: '{inventory.unitCost}',
+                        flex: 3,
+                        allowBlank: true
+                }, {
+                        xtype: 'combobox',
+                        reference: 'unit',
+                        bind: '{inventory.unit}',                               
+                        store: {
+                            type: 'units',
+                            autoLoad: true
+                        },
+                        displayField: 'name',
+                        valueField: 'name',
+                        label: 'Unit',
+                        labelWrap: true,
+                        fieldLabel: 'Unit',
+                        queryMode: 'local',
+                        typeAhead: true,
+                        allowBlank: true,
+                        flex: 3
+                }]
+            },  {
+                xtype: 'grid',
+                autoLoad: true,
+                plugins: 'grideditable',
+                flex: 6,
+                reference: 'warehouses',
+                margin: '10 0 0 0',
+                bind: '{warehouses}',
+                tbar: [{
+                        text: 'Add Warehouse',
+                        handler: 'onAddWarehouseClick'
+                }],
+                actions: {
+                        remove: {
+                            iconCls: 'cell-editing-delete-row',
+                            handler: 'onRemoveWarehouseClick'
+                        },
+                },
+                columns: [{
+                        text: 'Initial Quantity',
+                        dataIndex: 'initialQuantity',
+                        flex: 1,
+                        editable: true,
+                        dirtyText: null,
+                        editor: {
+                            xtype: 'numberfield',
+                            allowBlank: true,
+                            minValue: 1,
+                            maxValue: 150000,
+                        }
+                },{
+                        text: 'Name',
+                        dataIndex: 'name',
+                        flex: 1,
+                        editor: {
+                            xtype: 'combobox',
+                            store: {
+                               type: 'warehouselist',
+                               autoLoad: true
+                            },
+                            displayField: 'name',
+                            valueField: 'name',
+                            label: 'Name',
+                            labelWrap: true,
+                            name: 'name',
+                            fieldLabel: 'Name',
+                            queryMode: 'local',
+                            typeAhead: true,
+                            allowBlank: true
+                        }
+                }, {
+                        menuDisabled: true,
+                        sortable: false,
+                        xtype: 'actioncolumn',
+                        width: 50,
+                        items: ['@remove']
+                }],
+                plugins: [{
+                        ptype: 'rowediting',
+                        clicksToMoveEditor: 1,
+                        autoCancel: false
+                }]
+            }]
+        }],
     },
-
-    clearForm: function () {
-        this.getForm().getFields().each(function (field) {
-            field.validateOnChange = false;
-            field.setValue('');
-            field.resetOriginalValue();
-        });
-    }
+    buttons: [{
+        text: 'Save',
+        handler: 'onSaveClick'
+    }, {
+        text: 'Cancel',
+        handler: 'onCancelClick'
+    }]
 });
-

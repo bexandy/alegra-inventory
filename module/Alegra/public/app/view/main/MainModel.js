@@ -1,12 +1,14 @@
 /**
  * This class is the view model for the Main view of the application.
  */
-Ext.define('Alegra.view.main.MainModel', {
+Ext.define('Tutorial.view.main.MainModel', {
     extend: 'Ext.app.ViewModel',
-    requires:[
-        'Alegra.model.Company'
-    ],
+
     alias: 'viewmodel.main',
+
+    requires: [
+        'Tutorial.model.CompanyAlegra',
+    ],
 
     constructor: function(config) {
         var vm = this;
@@ -15,15 +17,14 @@ Ext.define('Alegra.view.main.MainModel', {
         
         vm.setStores({
             company: {
-                model: 'Alegra.model.Company',
+                model: 'Tutorial.model.CompanyAlegra',
                 autoLoad: true,
-                //session: true,
+                session: true,
                 listeners: {
-                    load: function(store, records) {     
-                     if (store.getAt(0)) {
+                    load: function(store, records) {                        
                         vm.set('name', store.getAt(0).get('name'));
                         vm.set('logo', '<img src="'+store.getAt(0).get('logo')+'" width="150px" />');
-                     }                   
+                        console.log(store.getAt(0).get('logo'));
                     }
                 }
             }

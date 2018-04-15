@@ -1,0 +1,686 @@
+{
+"success": true,
+"data": [
+{
+"id": 5001,
+"idParent": "",
+"name": "Assets",
+"description": "Under this category are the assets that the company has",
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5002,
+"idParent": "5001",
+"name": "Current Assets",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5003,
+"idParent": "5002",
+"name": "Cash and Cash Equivalents",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5004,
+"idParent": "5003",
+"name": "Cash on Hand",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5005,
+"idParent": "5003",
+"name": "Cash in Bank",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5006,
+"idParent": "5002",
+"name": "Trade and Other Receivables",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5007,
+"idParent": "5006",
+"name": "Accounts Receivable",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5008,
+"idParent": "5006",
+"name": "Advances and Advances Delivered",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5009,
+"idParent": "5006",
+"name": "Current Tax Assets",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5010,
+"idParent": "5009",
+"name": "Taxes In Favor",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5011,
+"idParent": "5009",
+"name": "Withholding In Favor",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5012,
+"idParent": "5006",
+"name": "Other Debtors",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5013,
+"idParent": "5012",
+"name": "Staff Debtors",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5014,
+"idParent": "5012",
+"name": "Third Loans",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5015,
+"idParent": "5012",
+"name": "Return to Suppliers",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5016,
+"idParent": "5002",
+"name": "Inventories",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5017,
+"idParent": "5002",
+"name": "Short-Term Investments",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5018,
+"idParent": "5002",
+"name": "Other Current Assets",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5019,
+"idParent": "5001",
+"name": "Non-Current Assets",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5020,
+"idParent": "5019",
+"name": "Property, Plant, and Equipment (PPE) also known as Fixed Assets",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5021,
+"idParent": "5019",
+"name": "Other Non-Current Assets",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5022,
+"idParent": "",
+"name": "Liabilities",
+"description": "Under this category are the liabilities of the company",
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5023,
+"idParent": "5022",
+"name": "Current Liabilities ",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5024,
+"idParent": "5023",
+"name": "Accounts Payable",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5025,
+"idParent": "5024",
+"name": "Accounts Payable to Suppliers",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5026,
+"idParent": "5024",
+"name": "Revenue Received in Advance",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5027,
+"idParent": "5024",
+"name": "Other Accounts Payables",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5028,
+"idParent": "5027",
+"name": "Customers Return",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5029,
+"idParent": "5023",
+"name": "Labor and Social Security Obligations",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5030,
+"idParent": "5029",
+"name": "Salaries and Social Benefits",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5031,
+"idParent": "5023",
+"name": "Financial Obligations",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5032,
+"idParent": "5031",
+"name": "Credit Cards",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5033,
+"idParent": "5023",
+"name": "Current Tax Liabilities",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5034,
+"idParent": "5033",
+"name": "Taxes Payable",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5035,
+"idParent": "5033",
+"name": "Withholding Payable",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5036,
+"idParent": "5023",
+"name": "Other Current Liabilities",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5037,
+"idParent": "5022",
+"name": "Non-Current Liabilities",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5038,
+"idParent": "5037",
+"name": "Long-term Loans",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5039,
+"idParent": "5037",
+"name": "Other Non-Current Liabilities",
+"description": null,
+"type": "liability",
+"readOnly": false
+},
+{
+"id": 5040,
+"idParent": "",
+"name": "Heritage",
+"description": "Under this category is the company assets",
+"type": "equity",
+"readOnly": false
+},
+{
+"id": 5041,
+"idParent": "5040",
+"name": "Social Capital",
+"description": null,
+"type": "equity",
+"readOnly": false
+},
+{
+"id": 5042,
+"idParent": "5040",
+"name": "Accumulated Earnings",
+"description": null,
+"type": "equity",
+"readOnly": false
+},
+{
+"id": 5043,
+"idParent": "5040",
+"name": "Adjustments for Opening Balances",
+"description": null,
+"type": "equity",
+"readOnly": false
+},
+{
+"id": 5044,
+"idParent": "5043",
+"name": "Initial Adjustments in Banks",
+"description": null,
+"type": "equity",
+"readOnly": false
+},
+{
+"id": 5045,
+"idParent": "5043",
+"name": "Initial Adjustments in Inventory",
+"description": null,
+"type": "equity",
+"readOnly": false
+},
+{
+"id": 5046,
+"idParent": "",
+"name": "Income",
+"description": "Under this category are all types of income",
+"type": "income",
+"readOnly": false
+},
+{
+"id": 5047,
+"idParent": "5046",
+"name": "Ordinary Activities Income",
+"description": null,
+"type": "income",
+"readOnly": false
+},
+{
+"id": 5048,
+"idParent": "5047",
+"name": "Sales",
+"description": null,
+"type": "income",
+"readOnly": false
+},
+{
+"id": 5049,
+"idParent": "5047",
+"name": "Sales Return",
+"description": null,
+"type": "income",
+"readOnly": false
+},
+{
+"id": 5050,
+"idParent": "5046",
+"name": "Other Income",
+"description": null,
+"type": "income",
+"readOnly": false
+},
+{
+"id": 5051,
+"idParent": "5050",
+"name": "Financial Income",
+"description": null,
+"type": "income",
+"readOnly": false
+},
+{
+"id": 5052,
+"idParent": "5050",
+"name": "Other Sundry Income",
+"description": null,
+"type": "income",
+"readOnly": false
+},
+{
+"id": 5053,
+"idParent": "",
+"name": "Expenses",
+"description": "Under this category are all types of expenses",
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5054,
+"idParent": "5053",
+"name": "Cost of Sales and Operation",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5055,
+"idParent": "5054",
+"name": "Costs of the Merchandise Sold",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5056,
+"idParent": "5055",
+"name": "Inventory Costs",
+"description": null,
+"type": "expense",
+"readOnly": true
+},
+{
+"id": 5057,
+"idParent": "5055",
+"name": "Adjustments to Inventory",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5058,
+"idParent": "5055",
+"name": "Financial Discounts",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5059,
+"idParent": "5055",
+"name": "Returns on Inventory Purchases",
+"description": null,
+"type": "expense",
+"readOnly": true
+},
+{
+"id": 5060,
+"idParent": "5054",
+"name": "Cost of Services Sold",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5061,
+"idParent": "5053",
+"name": "Administration Expenses",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5062,
+"idParent": "5061",
+"name": "Staff Expenses",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5063,
+"idParent": "5062",
+"name": "Salaries",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5064,
+"idParent": "5061",
+"name": "General Expenses",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5065,
+"idParent": "5064",
+"name": "Commissions, Fees and Services",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5066,
+"idParent": "5064",
+"name": "Leases",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5067,
+"idParent": "5064",
+"name": "Public Services",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5068,
+"idParent": "5064",
+"name": "Stationery",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5069,
+"idParent": "5064",
+"name": "Cleaning, Cafeteria, Restaurant and Laundry Services",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5070,
+"idParent": "5064",
+"name": "Advertising",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5071,
+"idParent": "5064",
+"name": "Vigilance",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5072,
+"idParent": "5064",
+"name": "General Securities",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5073,
+"idParent": "5064",
+"name": "Fuels and Lubricants",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5074,
+"idParent": "5064",
+"name": "Other General Expenses",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5075,
+"idParent": "5053",
+"name": "Depreciation, Amortization and Impairment",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5076,
+"idParent": "5075",
+"name": "Impairment of Accounts Receivable",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5077,
+"idParent": "5075",
+"name": "Depreciation - Property, Plant & Equipment",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5078,
+"idParent": "5053",
+"name": "Other Expenses",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5079,
+"idParent": "5078",
+"name": "Financial Expenses",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5080,
+"idParent": "5078",
+"name": "Adjustment for Difference in Exchange",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5081,
+"idParent": "5053",
+"name": "Tax Expenses",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+{
+"id": 5082,
+"idParent": "5081",
+"name": "Income and Complementary Taxes",
+"description": null,
+"type": "expense",
+"readOnly": false
+},
+[],
+{
+"id": 5084,
+"idParent": "5004",
+"name": "Cash Float",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5085,
+"idParent": "5005",
+"name": "Bank 1",
+"description": null,
+"type": "asset",
+"readOnly": false
+},
+{
+"id": 5086,
+"idParent": "5032",
+"name": "Business Credit Card",
+"description": null,
+"type": "liability",
+"readOnly": false
+}
+]
+}

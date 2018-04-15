@@ -1,7 +1,10 @@
-Ext.define('Alegra.store.Units', {
+Ext.define('Tutorial.store.Units', {
     extend: 'Ext.data.Store',
+    requires: [
+        'Tutorial.model.Unit',
+    ],
     alias: 'store.units',
-    model: 'Alegra.model.Unit',
+    model: 'Tutorial.model.Unit',
     data : [
      {name: 'unit'},
      {name: 'centimeter'},

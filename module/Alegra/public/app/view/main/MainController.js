@@ -4,15 +4,13 @@
  *
  * TODO - Replace this content of this view to suite the needs of your application.
  */
-Ext.define('Alegra.view.main.MainController', {
+Ext.define('Tutorial.view.main.MainController', {
     extend: 'Ext.app.ViewController',
 
     alias: 'controller.main',
 
-
     onItemSelected: function (sender, record) {
         Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
-
     },
 
     onConfirm: function (choice) {
@@ -20,5 +18,4 @@ Ext.define('Alegra.view.main.MainController', {
             //
         }
     }
-
 });

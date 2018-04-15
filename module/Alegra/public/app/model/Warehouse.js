@@ -1,4 +1,4 @@
-Ext.define('Alegra.model.Warehouse', {
+Ext.define('Tutorial.model.Warehouse', {
     extend: 'Ext.data.Model',
     fields: [
     	{ name: 'id', type: 'int' },
@@ -11,5 +11,5 @@ Ext.define('Alegra.model.Warehouse', {
     	{ name: 'availableQuantity', type: 'int' }
  	],
 
-    belongsTo: 'Alegra.model.Inventory'
+    belongsTo: 'Tutorial.model.Inventory'
 });

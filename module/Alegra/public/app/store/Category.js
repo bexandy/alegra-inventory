@@ -1,9 +1,13 @@
-Ext.define('Alegra.store.Category', {
+Ext.define('Tutorial.store.Category', {
     extend: 'Ext.data.Store',
 
-    alias: 'store.categorylist-bx',
+    requires: [
+        'Tutorial.model.Category',
+    ],
 
-    model: 'Alegra.model.Category',
+    alias: 'store.categorylist',
+
+    model: 'Tutorial.model.Category',
 
     storeId: 'categorylist',
 
@@ -21,4 +25,6 @@ Ext.define('Alegra.store.Category', {
         }
     },
 
+    autoLoad: true,
+    session: true
 });

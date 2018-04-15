@@ -1,0 +1,15 @@
+{
+"success": true,
+"data": [
+{
+"id": 1,
+"name": "Main",
+"observations": "",
+"isDefault": true,
+"address": "",
+"initialQuantity": "",
+"availableQuantity": "",
+"status": "active"
+}
+]
+}

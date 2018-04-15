@@ -1,4 +1,4 @@
-Ext.define('Alegra.model.Tax', {
+Ext.define('Tutorial.model.Tax', {
     extend: 'Ext.data.Model',
     fields: [
         { name: 'id', type: 'int' },
@@ -8,5 +8,5 @@ Ext.define('Alegra.model.Tax', {
         { name: 'status', type: 'string'},
         { name: 'type', type: 'string' },
     ],
-    belongsTo: 'Alegra.model.Product'
+    belongsTo: 'Tutorial.model.Product'
 });

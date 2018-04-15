@@ -1,6 +1,6 @@
 {
-    "name": "Alegra",
-    "namespace": "Alegra",
+    "name": "Tutorial",
+    "namespace": "Tutorial",
     "version": "1.0.0.0",
     "framework": "ext",
 
@@ -64,13 +64,13 @@
     "sass": {
         /**
          * The root namespace to use when mapping *.scss files to classes in the
-         * sass/src and sass/var directories. For example, "MyApp.view.Foo" would
-         * map to "sass/src/view/Foo.scss". If we changed this to "MyApp.view" then
+         * sass/src and sass/var directories. For example, "Tutorial.view.Foo" would
+         * map to "sass/src/view/Foo.scss". If we changed this to "Tutorial.view" then
          * it would map to "sass/src/Foo.scss". To style classes outside the app's
          * root namespace, change this to "". Doing so would change the mapping of
-         * "MyApp.view.Foo" to "sass/src/MyApp/view/Foo.scss".
+         * "Tutorial.view.Foo" to "sass/src/Tutorial/view/Foo.scss".
          */
-        "namespace": "Alegra",
+        "namespace": "Tutorial",
 
         /**
          * Generated sass source settings
@@ -517,7 +517,7 @@
     "builds": {
         "classic": {
             "toolkit": "classic",
-            "theme": "theme-crisp",
+            "theme": "theme-triton",
             "sass": {
                 "generated": {
                     "var": "classic/sass/save.scss",
@@ -550,5 +550,5 @@
      * Uniquely generated id for this application, used as prefix for localStorage keys.
      * Normally you should never change this value.
      */
-    "id": "819d30e9-6e86-42fb-b4fb-9a11f62b7cae"
+    "id": "f4e593c9-c1c8-44af-839d-0934eb343e28"
 }

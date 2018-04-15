@@ -1,9 +1,13 @@
-Ext.define('Alegra.store.Tax', {
+Ext.define('Tutorial.store.Tax', {
     extend: 'Ext.data.Store',
 
-    alias: 'store.taxlist-bx',
+    requires: [
+        'Tutorial.model.Tax',
+    ],
 
-    model: 'Alegra.model.Tax',
+    alias: 'store.taxlist',
+
+    model: 'Tutorial.model.Tax',
 
     storeId: 'taxlist',
 
@@ -20,5 +24,6 @@ Ext.define('Alegra.store.Tax', {
             writeAllFields: false
         }
     },
-
+    autoLoad: true,
+    session: true
 });

@@ -1,0 +1,13 @@
+{
+"success": true,
+"data": [
+{
+"id": 1,
+"name": "VAT",
+"percentage": "21.00",
+"description": "Value Added Tax",
+"type": "OTHER",
+"status": "active"
+}
+]
+}

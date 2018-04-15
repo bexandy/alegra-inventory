@@ -1,0 +1,24 @@
+{
+	"success": true,
+	"data": {
+		"name": "Bexandy Rodriguez",
+		"identification": "",
+		"phone": "+584124279158",
+		"website": "",
+		"email": "",
+		"regime": "Common Regime",
+		"currency": {
+			"code": "COP",
+			"symbol": "$",
+			"exchangeRate": null
+		},
+		"multicurrency": false,
+		"address": null,
+		"decimalPrecision": 2,
+		"invoicePreferences": null,
+		"applicationVersion": "other",
+		"registryDate": "2018-03-15 19:31:22",
+		"logo": "https://d3r8o2i8390sjv.cloudfront.net/application/production/company-logos/1302844638c4afa9241c9a5d17",
+		"timezone": "America/New_York"
+	}
+}

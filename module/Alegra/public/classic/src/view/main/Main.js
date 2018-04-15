@@ -5,33 +5,25 @@
  *
  * TODO - Replace this content of this view to suite the needs of your application.
  */
-Ext.define('Alegra.view.main.Main', {
+Ext.define('Tutorial.view.main.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'app-main',
-    id: 'mainview',
 
     requires: [
         'Ext.plugin.Viewport',
         'Ext.window.MessageBox',
 
-        'Alegra.view.main.MainController',
-        'Alegra.view.main.MainModel',
-
-        'Alegra.view.alegra.FormGrid',
-        'Alegra.view.alegra.ProductForm',
-        'Alegra.view.alegra.PriceListGrid',
-        'Alegra.view.alegra.TaxesGrid',
-        'Alegra.view.alegra.CategoriesGrid',
-        'Alegra.view.alegra.WarehousesGrid',
-        'Alegra.view.alegra.ProductBx'
-
+        'Tutorial.view.main.MainController',
+        'Tutorial.view.main.MainModel',
+        'Tutorial.view.main.List',
+        'Tutorial.view.alegra.Product'
     ],
 
     controller: 'main',
     viewModel: 'main',
 
     ui: 'navigation',
-
+    
     session: true,
 
     tabBarHeaderPosition: 1,
@@ -42,7 +34,6 @@ Ext.define('Alegra.view.main.Main', {
         background: '#F5EEEE',
     },
 
-
     header: {
         layout: {
            align: 'stretchmax'
@@ -52,7 +43,7 @@ Ext.define('Alegra.view.main.Main', {
                 text: '{logo}'
             },
             flex: 0,
-            //html: '{logo}',
+            html: '{logo}',
             width: 150
         },
         
@@ -69,7 +60,7 @@ Ext.define('Alegra.view.main.Main', {
 
     responsiveConfig: {
         tall: {
-            headerPosition: 'top'
+            headerPosition: 'top',
         },
         wide: {
             headerPosition: 'left'
@@ -93,53 +84,24 @@ Ext.define('Alegra.view.main.Main', {
             }
         }
     },
+    
 
     items: [{
-        title: ' Products Inventory',
-        iconCls: 'fa-cubes',
-        items: [{
-            xtype: 'form-grid',
-            reference: 'formGrid'
-        }]
-    },  
-    {
-        title: 'New Product',
-        iconCls: 'fa-plus',
-        items: [{
-            xtype: 'productform',
-        }]
-    },
-    {
-        title: 'Price List',
-        iconCls: 'fa-dollar',
-        items: [{
-            xtype: 'pricelistgrid',
-        }]
-    },
-    {
-        title: 'Taxes List',
-        iconCls: 'fa-calculator',
-        items: [{
-            xtype: 'taxesgrid'
-        }]
-    },
-    {   
-        title: 'Categories List',
-        iconCls: 'fa-sitemap',
-        items: [{
-            xtype: 'categoriesgrid',
-        }]
-    },  {
-        title: 'Warehouses List',
+        title: 'Home',
         iconCls: 'fa-home',
+        // The following grid shares a store with the classic version's grid as well!
         items: [{
-            xtype: 'warehousesgrid'
+            xtype: 'mainlist'
         }]
     }, {
         title: 'Products',
-        iconCls: 'fa-times',
+        iconCls: 'fa-cog',
         items: [{
-            xtype: 'alegra-product-bx'
+            xtype: 'alegra-product'
         }]
-    }]
+    }, {
+        xtype: 'toolbar',
+        docked: 'bottom',
+        title: 'Bottom Toolbar'
+   }]
 });

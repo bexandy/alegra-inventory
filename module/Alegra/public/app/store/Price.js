@@ -1,9 +1,12 @@
-Ext.define('Alegra.store.Price', {
+Ext.define('Tutorial.store.Price', {
     extend: 'Ext.data.Store',
+    requires: [
+        'Tutorial.model.Price',
+    ],
 
-    alias: 'store.pricelist-bx',
+    alias: 'store.pricelist',
 
-    model: 'Alegra.model.Price',
+    model: 'Tutorial.model.Price',
 
     storeId: 'pricelist',
 
@@ -20,5 +23,6 @@ Ext.define('Alegra.store.Price', {
             writeAllFields: false
         }
     },
-
+    autoLoad: true,
+    session: true
 });

@@ -1,9 +1,12 @@
-Ext.define('Alegra.store.Warehouse', {
+Ext.define('Tutorial.store.Warehouse', {
     extend: 'Ext.data.Store',
+    requires: [
+        'Tutorial.model.Warehouse',
+    ],
 
-    alias: 'store.warehouselist-bx',
+    alias: 'store.warehouselist',
 
-    model: 'Alegra.model.Warehouse',
+    model: 'Tutorial.model.Warehouse',
 
     storeId: 'warehouselist',
 
@@ -20,5 +23,6 @@ Ext.define('Alegra.store.Warehouse', {
             writeAllFields: false
         }
     },
-
+    autoLoad: true,
+    session: true
 });
